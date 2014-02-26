@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <!--h:form id="altaAsegPanel"-->
+        <ui:composition>
+            <h:form id="listCont" >
+           <table border="0">
+               <tr>
+                        <td colspan="4">
+                           <p:dataTable id="idListadoCont" var="contrariosT" value="#{contrarioManagedBean.listado}" emptyMessage="No se encontraron contrarios" >
+                                   <p:column headerText="Nombre" >
+                                        <h:outputText value="#{contrariosT.nombre}"/>
+                                  </p:column>
+                                  <p:column>
+                                      <p:commandButton actionListener="#{contrarioManagedBean.modificar(contrariosT)}" value="Asignar" update=":tabContrarios" immediate="true" />
+                                  </p:column>
+                                <!--p:column>
+                                 <p:commandButton value="actualizar" update=":tabContrarios" immediate="true" />
+                                </p:column-->
+                            </p:dataTable>    
+                        </td>
+                    </tr>
+          </table>
+            
+            
+                </h:form>
+             </ui:composition>
+         <!--/h:form-->
+    </h:body>
+</html>

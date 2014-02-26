@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+   
+    <!--h:head>
+        <title>Gestión Provincia</title>
+    </h:head>
+    <h:body-->
+     <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Listado de informe
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    <h:form id="formInformes1">               
+       <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+                <h:outputText value="Perito : " />
+                <h:selectOneMenu  id="perito" value="#{informeManagedBean.actual.perito}" style="width:175px">   
+                        <f:selectItem itemLabel="Todos"  itemValue="" />
+                        <f:selectItems value="#{peritoManagedBean.provvalor}"/> 
+                </h:selectOneMenu>
+                <p:commandButton value="Filtrar" action="#{informeManagedBean.listPorPerito}" update=":formInformes:idListado" />
+                      
+           </h:panelGrid>
+    </h:form>
+                <h:form id="formInformes">
+        
+  
+          
+           
+          
+       <p:dataTable id="idListado" var="informes" value="#{informeManagedBean.listado}" 
+                    paginator="true" rows="3" style="width: 800px"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="1,2,3,5"
+                 widgetVar="tablaInformes"   emptyMessage="No se encontraron informes">
+           <f:facet name="header"> 
+               <h:outputText value="Buscar en todos los campos:" />  
+               <p:inputText id="globalFilter" onkeyup="tablaInformes.filter()" />
+           </f:facet>  
+      
+           
+                <p:column headerText="Informe" filterBy="#{informes.numeroinforme}" ><!--sortBy="#{informes.numeroinforme}" -->
+                    <h:outputText value="#{informes.numeroinforme}"/>
+                </p:column>
+         
+           <p:column headerText="Perito"  filterBy="#{informes.perito}" >
+                    <h:outputText value="#{informes.perito}"/>
+           </p:column>
+           
+            
+          <p:column headerText="Póliza"  filterBy="#{informes.poliza}" >
+            <h:outputText value="#{informes.poliza}"/>
+          </p:column>
+          <p:column headerText="Siniestro"  filterBy="#{informes.siniestro}" >
+              <h:outputText value="#{informes.siniestro}"/>
+          </p:column>
+          <p:column>
+             <h:commandButton action="#{informeManagedBean.Modificar(informes)}" value="#{msg['modify']}"/>
+                  
+           </p:column>
+             </p:dataTable>
+</h:form>  
+                
+                
+   </center>           
+</ui:define>
+
+</ui:composition>
+    <!--/h:body-->
+</html>

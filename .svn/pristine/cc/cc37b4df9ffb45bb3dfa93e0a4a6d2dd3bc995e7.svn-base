@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-sep-2013 14:08:23 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="modelsMaestros.Cliente" schema="MAESTROS" table="CLIENTE">
+    <comment>TABLA DE CLIENTES. EN ELLA ESTAN ASOCIADAS EL NOMBRE DEL CLIENTE, EL TIPO DE FACTURACION (ESTE TIPO VIENE DE LA TABLA DE TEXTOS COMUNES SUBTXT DONDE SE VA A
+        ALMACENAR EL SUBCODIGO DE LA TABLA, PARA EL TIPO DE FACTURACION EL CODIGO DE TEXTOS COMUNES QUE LE CORRESPONDE ES EL 1). FK: TIENE ASOCIADO EL ID DE LA POBLACION A LA QUE
+        PERTENECE Y LA SERIE DE FACTURACION</comment>
+    <id name="idcliente" type="big_decimal">
+      <column name="IDCLIENTE" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="idpoblacion" type="string">
+      <column length="4" name="IDPOBLACION" not-null="true"/>
+    </property>
+    <property name="idserie" type="big_decimal">
+      <column name="IDSERIE" precision="22" scale="0"/>
+    </property>
+    <property name="nombre" type="string">
+      <column length="150" name="NOMBRE"/>
+    </property>
+    <property name="solicitante" type="string">
+      <column length="1" name="SOLICITANTE"/>
+    </property>
+    <property name="pagador" type="string">
+      <column length="1" name="PAGADOR"/>
+    </property>
+    <property name="cabecerafac" type="string">
+      <column length="1" name="CABECERAFAC"/>
+    </property>
+    <property name="cabecerainf" type="string">
+      <column length="1" name="CABECERAINF"/>
+    </property>
+    <property name="cif" type="string">
+      <column length="9" name="CIF"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="150" name="DIRECCION"/>
+    </property>
+    <property name="codigoPostal" type="big_decimal">
+      <column name="CODIGO_POSTAL" precision="22" scale="0"/>
+    </property>
+    <property name="web" type="string">
+      <column length="100" name="WEB"/>
+    </property>
+    <property name="email" type="string">
+      <column length="20" name="EMAIL"/>
+    </property>
+    <property name="telefono1" type="string">
+      <column length="50" name="TELEFONO1"/>
+    </property>
+    <property name="telefono2" type="string">
+      <column length="50" name="TELEFONO2"/>
+    </property>
+    <property name="fax" type="string">
+      <column length="20" name="FAX"/>
+    </property>
+    <property name="personaContacto" type="string">
+      <column length="50" name="PERSONA_CONTACTO"/>
+    </property>
+    <property name="comentario" type="string">
+      <column length="150" name="COMENTARIO"/>
+    </property>
+    <property name="baja" type="string">
+      <column length="1" name="BAJA"/>
+    </property>
+    <property name="irpf" type="big_decimal">
+      <column name="IRPF" precision="22" scale="0"/>
+    </property>
+    <property name="iva" type="big_decimal">
+      <column name="IVA" precision="22" scale="0"/>
+    </property>
+    <property name="fechaAlta" type="date">
+      <column length="7" name="FECHA_ALTA"/>
+    </property>
+    <property name="cuentaContable" type="string">
+      <column length="30" name="CUENTA_CONTABLE"/>
+    </property>
+    <property name="idprovincia" type="string">
+      <column length="2" name="IDPROVINCIA" not-null="true"/>
+    </property>
+   <property name="diasPrimerAvance" type="big_decimal">
+      <column name="DIAS_PRIMER_AVANCE" precision="22" scale="0"/>
+    </property>
+     <property name="periodicidadAvances" type="big_decimal">
+      <column name="PERIODICIDAD_AVANCES" precision="22" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

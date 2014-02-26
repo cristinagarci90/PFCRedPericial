@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       
+        <ui:composition>
+     <h:form id="formTalleresListado">  
+                          <p:panel id="panelAltaTaller"><!-- header="Provincia"--> 
+   <table border="0">
+
+                      <tr>
+                            <td colspan="4">
+                                <table>
+                                    <tr>
+                                         <td align="right">#{msg['name']}:</td>
+                                          <td>
+                                             
+                                              <h:inputText label="#{msg['name']}" required="true" requiredMessage="#{msg['Required_field']} - #{msg['name']}" id="nombre" value="#{tallerManagedBean.actual.nombre}">
+                                                  <p:ajax update="msgNombre" event="keyup" />  
+                                              </h:inputText>
+                                              <!--h:message for="personaContacto" /-->
+                                          </td>
+                                           <td align="right">CIF : </td>
+                                           <td>
+                                              <h:inputText label="Introduzca CIF del taller"  required="true" requiredMessage="El CIF del taller es un campo obligatorio" id="cif"  value="#{tallerManagedBean.actual.cif}">
+                                                   <p:ajax update="msgCIF" event="keyup" />  
+                                              </h:inputText>
+                                          </td>
+
+
+
+
+
+                                           </tr>
+                                          </table>
+                                      </td>
+
+                                </tr>
+
+
+                                  <tr><td colspan="4"><br/></td></tr>
+   <tr>
+                                    <td align="right">#{msg['Select_a_province']}:</td>
+                                    <td>
+                                      <!--h:selectOneMenu  id="idprovincia" value="#{tallerManagedBean.actual.idprovincia}" required="true" requiredMessage="#{msg['Required_field']} - #{msg['Select_a_province']}" style="width:175px">   
+                                               <f:selectItem 
+                                                        itemLabel="#{msg['Select_a_province']}" 
+                                                        itemValue="" /> 
+                                               <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                                <f:ajax execute="@this" render="idpoblacion"/> 
+                                                <p:ajax update="msgTallerprovincia" event="valueChange"/>  
+                                       </h:selectOneMenu>
+                                    </td>
+                                   <td align="right">Siniestro Población:</td>
+                                   <td> 
+                                      <h:selectOneMenu  id="idpoblacion" required="true" requiredMessage="#{msg['Required_field']} - Poblacion" value="#{tallerManagedBean.actual.idpoblacion}" style="width:175px">   
+                                               <f:selectItem 
+                                                        itemLabel="#{msg['Select_a_province']}" 
+                                                        itemValue="" /> 
+                                               <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(tallerManagedBean.actual.idprovincia)}"/> 
+                                                <p:ajax update="msgTallerpoblacion" event="valueChange"/>
+                                       </h:selectOneMenu-->
+
+
+<p:selectOneMenu  id="idprovincia" style="width:175px" value="#{tallerManagedBean.actual.idprovincia}">   
+                                  <f:selectItem 
+                                           itemLabel="#{msg['Select_a_province']}" 
+                                           itemValue="" /> 
+                                  <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                  <f:ajax execute="@this" render="idpoblacion"/> 
+                          </p:selectOneMenu>
+                        <p:selectOneMenu  id="idpoblacion" value="#{tallerManagedBean.actual.idpoblacion}" style="width:175px" valueChangeListener="#{tallerManagedBean.listPorPobProv}">   
+                                  <f:selectItem 
+                                           itemLabel="#{msg['Select_a_province']}" 
+                                           itemValue="" /> 
+                                  <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(tallerManagedBean.actual.idprovincia)}"/> 
+
+                          </p:selectOneMenu>
+                                    
+                                    </td>
+  
+                                </tr>   
+
+                                
+                                  <tr>
+                                      <td colspan="5">
+                                           <p:message for="nombre" id="msgNombre" />
+                                           <p:message for="cif" id="msgCIF" />
+                                            <!--p:message for="idpoblacion" id="msgTallerpoblacion" />
+                                           <p:message for="idprovincia" id="msgTallerprovincia" /-->
+
+                                      </td>
+                                  </tr>
+                                  <tr>
+                                      <td colspan="5" align="center" >
+                                          <p:commandButton type="reset" value="Borrar"/>
+            <p:commandButton actionListener="#{tallerManagedBean.newRegister()}" value="Guardar Nuevo" update="panelAltaTaller" />
+            <p:commandButton action="#{tallerManagedBean.updateRegister()}" value="Modificar" rendered="#{not empty informeManagedBean.actual.asegurado}" update="panelAltaTaller"  />
+
+                                      </td>
+
+                                  </tr>
+
+                            </table>
+  </p:panel>
+                     
+                  
+                  </h:form>
+                
+                 
+             </ui:composition>
+        
+    </h:body>
+</html>

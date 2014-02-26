@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Provincia" schema="GESTIONPERICIAL" table="PROVINCIA">
+    <comment>TABLA DE PROVINCIAS. CONTIENE LOS IDENTIFICADORES DE LAS PROVINCIAS Y SU NOMBRE</comment>
+    <id name="idprovincia" type="string">
+      <column length="2" name="IDPROVINCIA"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="provincia" type="string">
+      <column length="100" name="PROVINCIA"/>
+    </property>
+    <!--set inverse="true" name="poblacions">
+      <key>
+        <column length="2" name="IDPROVINCIA" not-null="true"/>
+      </key>
+      <one-to-many class="models.Poblacion"/>
+    </set-->
+  </class>
+</hibernate-mapping>

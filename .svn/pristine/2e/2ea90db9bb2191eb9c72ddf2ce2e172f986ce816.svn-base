@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Honorarios" schema="GESTIONPERICIAL" table="HONORARIOS">
+    <id name="idhonorario" type="big_decimal">
+      <column name="IDHONORARIO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="models.Tarifa" fetch="select" name="tarifa">
+      <column name="IDTARIFA" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="tramo" type="big_decimal">
+      <column name="TRAMO" precision="22" scale="0"/>
+    </property>
+    <property name="honorario" type="big_decimal">
+      <column name="HONORARIO" precision="22" scale="0"/>
+    </property>
+    <property name="porcentajeexceso" type="big_decimal">
+      <column name="PORCENTAJEEXCESO" precision="22" scale="0"/>
+    </property>
+    <property name="sobreexcesode" type="big_decimal">
+      <column name="SOBREEXCESODE" precision="22" scale="0"/>
+    </property>
+    <property name="minimo" type="big_decimal">
+      <column name="MINIMO" precision="22" scale="0"/>
+    </property>
+    <property name="maximo" type="big_decimal">
+      <column name="MAXIMO" precision="22" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

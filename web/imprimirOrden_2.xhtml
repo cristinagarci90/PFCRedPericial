@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <!--h:form id="altaAsegPanel"-->
+        <ui:composition>
+            <h:form id="imprimirPerito" >
+                <p:commandButton value="Load" type="button" onclick="lazyload()" id="btnLoad" />
+
+                    
+
+                          <p:remoteCommand name="lazyload" update="lazypanel lazypanel2">
+                                  <f:setPropertyActionListener value="#{true}" 
+                                  target="#{informeManagedBean.imprimoOrden()}" />
+                          </p:remoteCommand>
+                <br/><br/><br/>
+
+                     <p:outputPanel id="lazypanel" layout="block">
+                            <p:panel rendered="#{informeManagedBean.imprimoOrden()=='N'}">
+                                Para poder imprimir debe estar completo
+                                Datos del informe,Asegurado o Contrario y taller
+                            </p:panel>
+                         
+                      </p:outputPanel>
+                      <p:outputPanel id="lazypanel2" layout="block">
+                            <p:panel rendered="#{informeManagedBean.imprimoOrden()=='S'}" id="noFaltanDatos">
+
+                                    <table border="0">
+                                         <tr>
+                                                          <td align="right">IMPRIMIR : </td>
+                                                          <td>
+                                                              <h:outputLabel value="#{informeManagedBean.imprimirPerito}"/>
+                                                           </td>
+
+                                            </tr>
+                                            <tr>
+                                                          <td align="right">Id:</td>
+                                                          <td>
+                                                              <h:outputLabel value="#{informeManagedBean.actual.idinforme}"/>
+                                                           </td>
+
+                                            </tr>
+                                              <tr>
+                                                          <td align="right"><b>Peritar a :</b></td>
+                                                           <td>
+                                                               <h:selectOneRadio   id="peritara" value="#{informeManagedBean.actual.peritara}" >
+                                                                    <f:selectItem itemValue="1" itemLabel="Asegurado"/>
+                                                                    <f:selectItem itemValue="2" itemLabel="Contrario"/>
+
+                                                                </h:selectOneRadio>
+                                                           </td>
+                                              </tr>
+                                            <tr>
+                                                       <td align="right">Asegurado:</td>
+                                                        <td>
+                                                           <h:outputLabel value="#{informeManagedBean.actual.asegurado}"/>           
+
+                                                          </td>
+                                             </tr>
+                                            <tr>
+                                                       <td align="right">Taller:</td>
+                                                        <td>
+                                                            <h:outputLabel value="#{informeManagedBean.actual.taller}"/>                              
+                                                          </td>
+                                             </tr>
+
+                                    </table>
+                              </p:panel>
+                          </p:outputPanel>
+                </h:form>
+             </ui:composition>
+         <!--/h:form-->
+    </h:body>
+</html>
+
+
+
+
+
+
+

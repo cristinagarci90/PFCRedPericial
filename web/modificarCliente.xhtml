@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Modificacion de Clientes
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+    <h:form>  
+        
+      <h3><bold>MODIFICACION DE CLIENTE</bold></h3>
+            <br></br>
+      <p:accordionPanel id="nuevocliente" multiple="true" style="width: 800px"  activeIndex="null" dynamic="false">
+     
+      <p:tab title="Tipo de Cliente" id="tipo">
+             
+      <table>
+      <tr>
+      <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Solicitante :</td>
+      <td align="left">
+         <h:selectOneRadio id="solicitante" required="true" requiredMessage="Campo obligatorio-Solicitante" value="#{clienteManagedBean.actual.solicitante}">
+          <f:selectItem itemValue="S" itemLabel="Si"/>
+          <f:selectItem itemValue="N" itemLabel="No"/>     
+         </h:selectOneRadio>
+        <p:message for="solicitante"/>
+        </td>
+                   </tr>
+                   
+                   
+                     <tr>
+                         <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pagador :</td>
+                         <td align="left">
+        <h:selectOneRadio id="pagador" required="true" requiredMessage="Campo obligatorio-Pagador" value="#{clienteManagedBean.actual.pagador}">
+          <f:selectItem itemValue="S" itemLabel="Si"/>
+          <f:selectItem itemValue="N" itemLabel="No"/>     
+        </h:selectOneRadio>
+        <p:message for="pagador"/>   
+        </td>
+                   </tr>
+                   
+                   
+                   <tr>
+                       <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cabecera de Factura :</td>
+                       <td align="left">
+            <h:selectOneRadio id="cabecera_factura" required="true" requiredMessage="Campo obligatorio-CabeceraFactura" value="#{clienteManagedBean.actual.cabecerafac}">
+          <f:selectItem itemValue="S" itemLabel="Si"/>
+          <f:selectItem itemValue="N" itemLabel="No"/>     
+        </h:selectOneRadio>
+          <p:message for="cabecera_factura"/>  
+        </td>
+                   </tr>
+        
+          <tr>
+              <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cabecera de Informe :</td>
+              <td align="left">
+            <h:selectOneRadio id="cabecera_informe" required="true" requiredMessage="Campo obligatorio-CabeceraInforme" value="#{clienteManagedBean.actual.cabecerainf}">
+          <f:selectItem itemValue="S" itemLabel="Si"/>
+          <f:selectItem itemValue="N" itemLabel="No"/>     
+        </h:selectOneRadio>
+       <p:message for="cabecera_informe"/>
+        </td>
+                   </tr>
+               </table>
+
+     
+         </p:tab>       
+         
+         
+            <p:tab title="Informacion Basica">  
+                                
+                                <table>
+                                    <tr>
+                                        <td align="left">    
+                                             <h:outputLabel value="Nombre :" /> 
+                                        </td>
+                                    <td align="left"> 
+                                    <p:inputText id="nombre" value="#{clienteManagedBean.actual.nombre}" required="true"
+                                                 requiredMessage="Nombre requerido"
+                                                 validatorMessage="maximo 45 caracteres" >
+                                        <f:validateLength maximum="45" />
+                                       
+                                    </p:inputText>
+                                    <p:watermark for="nombre" value="Nombre Cliente *" />
+                                    <p:message for="nombre"/>
+                                    </td>
+                                        
+                                     <td align="left">
+                                            <h:outputLabel value="CIF :" />
+                                        </td>
+                                    <td align="left">
+                                        <p:inputText id="cif" value="#{clienteManagedBean.actual.cif}" required="true"
+                                                 requiredMessage="Cif requerido"
+                                                 validatorMessage="maximo 45 caracteres" >
+                                        <f:validateLength maximum="45" />
+                                    </p:inputText>
+                                     <p:watermark for="cif" value="Cif Cliente *" />
+                                     <p:message for="cif"/>
+                                    </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td align="left">
+                                            <h:outputLabel value="Telefono1 : " />
+                                        </td>
+                                        <td align="left">
+                                    <p:inputText id="telefono1" value="#{clienteManagedBean.actual.telefono1}" />
+                                    <p:watermark for="telefono1" value="Telefono1 Cliente " />
+                                    <p:message for="telefono1" /> 
+                                        </td>
+                                    <td align="left">  
+                                        <h:outputLabel value="Telefono2 :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="telefono2" value="#{clienteManagedBean.actual.telefono2}" />
+                                     <p:message for="telefono2" />
+                                    <p:watermark for="telefono2" value="Telefono2 Cliente" />
+                                    </td>
+                                    </tr>
+                                    
+                                                                    
+                                    
+                                    <tr>
+                                    <td align="left">  
+                                        <h:outputLabel value="Web :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="web" value="#{clienteManagedBean.actual.web}" />
+                                    <p:watermark for="web" value="Web Cliente" />
+                                   
+                                    </td>
+                                        
+                                    <td align="left">  
+                                        <h:outputLabel value="Email :" />
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="email"  validatorMessage="Formato de email no válido" value="#{clienteManagedBean.actual.email}">
+                                        <f:validateRegex
+                        		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
+                                    <p:watermark for="email" value="Direccion Email " />
+                                    <p:message for="email" />
+
+                                    </td>
+                                    </tr>                                
+                                    
+                                    
+                                    
+                                    <tr>
+                                    <td align="left">  
+                                        <h:outputLabel value="Fax :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="fax" value="#{clienteManagedBean.actual.fax}" />
+                                    <p:watermark for="fax" value="Fax Cliente" />
+                                     <p:message for="fax" />
+                                    
+                                    </td>
+                                        
+                                     <td align="left">  
+                                        <h:outputLabel value="Persona de contacto :"/> 
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="persona_contacto" value="#{clienteManagedBean.actual.personaContacto}" />
+                                    <p:watermark for="persona_contacto" value="Persona Contacto" />
+                                   
+                                    </td>
+                                    </tr>
+                                                                  
+                                    
+                                   
+                                    
+                                    
+                                     <tr>
+                                    <td align="left">  
+                                        <h:outputLabel value="Comentario :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="comentario" value="#{clienteManagedBean.actual.comentario}" />
+                                    <p:watermark for="comentario" value="Comentario" />
+                                    <p:message for="comentario" />
+                                    </td>
+                                         
+                                     <td align="left">
+                                        <h:outputLabel value="Direccion :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="direccion" value="#{clienteManagedBean.actual.direccion}" required="true"
+                                                 requiredMessage="Direccion requerida"
+                                                 validatorMessage="maximo 45 caracteres" >
+                                        <f:validateLength maximum="45" />
+                                    </p:inputText>
+                                    <p:message for="direccion" />
+                                    <p:watermark for="direccion" value="Direccion *" />
+                                    </td>    
+                                    </tr>
+                                    
+                                    
+                                    
+                                 
+                                    <tr>
+                                    <td align="left">
+                                        <h:outputLabel value="Codigo Postal :" />
+                                    </td>
+                                        <td align="left">
+                                    <p:inputText id="codigoPostal" value="#{clienteManagedBean.actual.codigoPostal}"/>                                     
+                                    
+                                    <p:watermark for="codigoPostal" value="Codigo Postal" />
+                                        </td>
+                                    </tr>                
+                                       
+                                                                                                        
+                                    <tr>
+                                       <td align="left">
+                                           <h:outputLabel value="Provincia/Población :" />
+                                        </td> 
+                                        <td>   
+                                            <p:selectOneMenu id="provincia" value="#{clienteManagedBean.actual.idprovincia}" style="width:175px" 
+                                                             required="true" requiredMessage="Provincia obligatoria"> 
+                                                <f:selectItem 
+                                                            itemLabel="Seleccione una provincia" 
+                                                itemValue="" /> 
+                                        <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                        <f:ajax 
+                                        execute="@this" 
+                                        render="poblacion"/>                                         
+                                         </p:selectOneMenu>  
+                                         <p:message for="provincia" />
+                                        </td>  
+                                        <td>   
+                                            <p:selectOneMenu  value="#{clienteManagedBean.actual.idpoblacion}" id="poblacion" style="width:175px"
+                                                              required="true" requiredMessage="Poblacion Obligatoria"> 
+                                         <f:selectItem itemLabel="Seleccione una Población" 
+                                        itemValue=""/> 
+                                        <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(clienteManagedBean.actual.idprovincia)}"/> 
+                                        </p:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                        
+                                  
+                                                                
+                                </table>
+                        </p:tab>
+                
+         
+         <p:tab title="Informacion Contable" >
+         
+             <table>
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Iva :" />
+             </td>
+            <td align="left">  
+            <p:inputText id="iva" value="#{clienteManagedBean.actual.iva}" />
+             <p:message for="iva"/>
+            </td>
+            </tr>
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Irpf :" />
+             </td>
+             <td align="left">  
+             <p:inputText id="irpf" value="#{clienteManagedBean.actual.irpf}" />
+             <p:message for="irpf"/>
+             </td>
+                 </tr> 
+              <tr>    
+             <td align="left">  
+             <h:outputLabel value="Fecha de alta :" /> 
+             </td>
+             <td align="left">  
+             <h:inputText value="#{clienteManagedBean.actual.fechaAlta}" id="popupButtonDate">              
+             <f:convertDateTime pattern="dd/mm/yyyy"/>  
+             </h:inputText>            
+                 
+             <p:calendar value="#{clienteManagedBean.actual.fechaAlta}" id="popupButtonCal" showOn="button" />
+             </td>
+              </tr>
+                 
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Cuenta :" />
+             </td>
+             <td align="left">  
+             <p:inputText id="cuentaContable" value="#{clienteManagedBean.actual.cuentaContable}" />
+             <p:message for="cuentaContable"/>
+             </td>
+                 </tr> 
+             </table>
+     
+         </p:tab>
+                            
+          
+         
+         
+         
+         <p:tab title="Avances" >
+         
+             <table>
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Dias del primer avance :"/>
+             </td>
+            <td align="left">  
+                <p:inputText id="dias_primer_avance" value="#{clienteManagedBean.actual.diasPrimerAvance}" required="true" requiredMessage="Dias_Primer_Avance Obligatorio"/>
+            <p:message for="dias_primer_avance" />
+            </td>
+            </tr>
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Periodicidad de los avances :" />
+             </td>
+             <td align="left">  
+                 <p:inputText id="periodicidad_avances" value="#{clienteManagedBean.actual.periodicidadAvances}" required="true" requiredMessage="Periodicidad_Avances_Obligatorio"/>
+                 <p:message for="periodicidad_avances"/>
+             </td>
+                 </tr>
+                 
+                
+             </table>
+         </p:tab>
+            
+          
+        </p:accordionPanel>  
+            
+       
+            
+          
+         
+         
+       
+       
+         
+         
+          
+        
+         
+             
+                 
+                 
+            
+        
+       
+        
+        
+        
+        
+                <center>
+                  <h:outputLabel value="Baja: " for="baja"/> 
+                    <p:watermark for="baja" value="Baja S/N">
+                  <p:selectOneMenu value="#{clienteManagedBean.actual.baja}" required="true" id="baja" >
+                      
+                        <f:selectItem itemLabel="N" itemValue="N" />              
+                        <f:selectItem itemLabel="S" itemValue="S" />  
+            
+                </p:selectOneMenu> 
+                    </p:watermark>
+         <br></br>
+         <p:messages id="messages" />
+                    
+                 <br></br>
+                  
+                 
+                
+           
+                 <h:commandButton action="#{clienteManagedBean.updateRegister}" value="Guardar"/>
+                  <h:commandButton action="MEstados" value="Cancelar"/>
+                </center>
+        
+       
+            
+               
+                
+                
+                
+               
+    
+
+        
+        
+        
+        
+        
+</h:form>  
+                
+                
+   </center>           
+</ui:define>
+
+</ui:composition>
+    
+</html>           
+

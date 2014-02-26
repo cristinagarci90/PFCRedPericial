@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Maestro de Tarifas
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+    <h:form>  
+            <p:growl id="messages" showDetail="true"/>
+           <h3><bold>LISTADO DE TARIFAS</bold></h3>
+        <br></br>
+            <p:dataTable id="series" var="item" value="#{tarifaManagedBean.listadota}" tableStyle="width:auto"
+                 paginator="true" rows="3"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="1,2,3,5" widgetVar="tarifas" editable="true" emptyMessage="No se encontraron tarifas">
+                
+           <p:ajax event="rowEdit" listener="#{tarifa.onEdit}" update="@this"/>       
+        
+           
+           <f:facet name="header"> 
+               <h:outputText value="Search all fields:" />  
+               <p:inputText id="globalFilter" onkeyup="tarifas.filter()" style="width:150px" />
+           </f:facet>  
+                
+                <p:column headerText="Codigo" style="width:100px" sortBy="#{item.idtarifa}" filterBy="#{item.idtarifa}" >
+                   <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.idtarifa}"/>
+                    </f:facet>
+                        
+                    <f:facet name="input">
+                        <h:inputText value="#{item.idtarifa}" style="width:100%"/>
+                    </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                
+               <p:column headerText="Nombre" style="width:100px" sortBy="#{item.nombre}" filterBy="#{item.nombre}">
+                  <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.nombre}"/>
+                    </f:facet>
+                        
+                    <f:facet name="input">
+                        <h:inputText value="#{item.nombre}" style="width:100%"/>
+                    </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                                          
+                
+                
+              <!--<p:column style="width:40px">
+                    <h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+                        <p:commandButton id="Ver" oncomplete="tarifaDialog.show()"  icon="ui-icon-search"  title="View">
+                            <f:setPropertyActionListener value="#{item}" target="#{tarifaManagedBean.tarifaSelected}"/>
+                        </p:commandButton>
+                    </h:panelGrid>
+                </p:column>               
+                
+                
+                
+                
+                
+                <p:column headerText="Opciones" style="width:50px">
+                  <p:rowEditor />                    
+                    
+                </p:column>-->
+                
+                
+            </p:dataTable> 
+            
+            
+            
+            
+            
+            
+            
+            <p:dialog header="Detalle de las tarifas" widgetVar="tarifaDialog" resizable="false" id="carDlg" modal="true">
+                <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <f:facet name="header">
+                        <h:outputText value="Datos de la fila seleccionada"/>
+                    </f:facet>                  
+                   
+                    
+                    <h:outputText value="Codigo: "/>
+                    <h:outputText value="#{tarifaManagedBean.tarifaSelected.codigo}" style="font-weight:bold"/>
+                                   
+                    
+                    <h:outputText value="Nombre: "/>
+                    <h:outputText value="#{tarifaManagedBean.tarifaSelected.nombre}" style="font-weight:bold"/>                    
+                    
+                </h:panelGrid>
+                
+            </p:dialog>
+            
+            
+            
+            
+              
+         
+           
+           
+     
+</h:form>  
+                
+                
+   </center>           
+</ui:define>
+
+</ui:composition>
+</html>           

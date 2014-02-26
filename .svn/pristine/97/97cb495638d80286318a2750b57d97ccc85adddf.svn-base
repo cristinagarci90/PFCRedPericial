@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Maestro de Peritos
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+    <h:form>  
+            <p:growl id="messages" showDetail="true"/>
+             <h3><bold>LISTADO DE PERITOS</bold></h3>
+            <br></br>
+            <p:dataTable id="perito" var="item" value="#{peritoManagedBean.listadoper}" style="width:600px"
+                 paginator="true" rows="3"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="1,2,3,5" widgetVar="peritos" editable="true" emptyMessage="No se encontraron peritos">
+                
+           <p:ajax event="rowEdit" listener="#{perito.onEdit}" update="@this"/>       
+        
+           
+           <f:facet name="header"> 
+               <h:outputText value="Search all fields:" />  
+               <p:inputText id="globalFilter" onkeyup="peritos.filter()" style="width:150px" />
+           </f:facet>  
+                
+                <p:column headerText="Nombre" style="width:100px" sortBy="#{item.perito}" filterBy="#{item.perito}" >
+                   <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.perito}"/>
+                    </f:facet>
+                        
+                    <f:facet name="input">
+                        <h:inputText value="#{item.perito}" style="width:100%"/>
+                    </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                
+               <p:column headerText="Nif" style="width:100px" sortBy="#{item.nif}" filterBy="#{item.nif}">
+                  <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.nif}"/>
+                    </f:facet>
+                        
+                    <f:facet name="input">
+                        <h:inputText value="#{item.nif}" style="width:100%"/>
+                    </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                
+                <p:column headerText="Telefono" style="width:100px" sortBy="#{item.telefono1}" filterBy="#{item.telefono1}">
+                  <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.telefono1}"/>
+                    </f:facet>
+                        
+                    <f:facet name="input">
+                        <h:inputText value="#{item.telefono1}" style="width:100%"/>
+                    </f:facet>
+                    </p:cellEditor>
+                </p:column>                                           
+                
+                <p:column>
+                     <h:commandButton action="#{peritoManagedBean.Modificar(item)}" value="#{msg['modify']}"/>
+                     
+                </p:column>
+              <!--<p:column style="width:40px">
+                    <h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+                        <p:commandButton id="Ver" oncomplete="peritoDialog.show()"  icon="ui-icon-search"  title="View">
+                            <f:setPropertyActionListener value="#{item}" target="#{peritoManagedBean.peritoSelected}"/>
+                        </p:commandButton>
+                    </h:panelGrid>
+                </p:column>               
+                
+                
+                
+                
+                
+                <p:column headerText="Opciones" style="width:50px">
+                  <p:rowEditor />                    
+                    
+                </p:column>-->
+                
+                
+            </p:dataTable>  
+            
+            
+            
+            
+            
+            
+            
+            <p:dialog header="Detalle del Perito" widgetVar="peritoDialog" resizable="false" id="carDlg" modal="true">
+                <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <f:facet name="header">
+                        <h:outputText value="Datos de la fila seleccionada"/>
+                    </f:facet>                  
+                   
+                    
+                    <h:outputText value="Nombre: "/>
+                    <h:outputText value="#{peritoManagedBean.peritoSelected.perito}" style="font-weight:bold"/>
+                                   
+                    
+                    <h:outputText value="Nif: "/>
+                    <h:outputText value="#{peritoManagedBean.peritoSelected.nif}" style="font-weight:bold"/>
+                    
+                    
+                    <h:outputText value="Telefono: "/>
+                    <h:outputText value="#{peritoManagedBean.peritoSelected.telefono1}" style="font-weight:bold"/>
+                    
+                </h:panelGrid>
+                
+            </p:dialog>
+            
+            
+            <!--<p:dialog header="Modificar Cliente" widgetVar="peritoDialog2" resizable="false" id="carDlg2" modal="true">
+                <h:panelGrid id="display2" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <f:facet name="header">
+                        <h:outputText value="Datos de la fila seleccionada"/>
+                    </f:facet>                  
+                   
+                    
+                    <h:outputText value="Nombre: "/>
+                    <h:inputText value="#{peritoController.peritoSelected.nombre}" style="font-weight:bold"/>
+                   
+                    
+                    
+                    <h:outputText value="Cif: "/>
+                    <h:inputText value="#{peritoController.peritoSelected.nif}" style="font-weight:bold"/>
+                    
+                    
+                    <h:outputText value="Dirección: "/>
+                    <h:inputText value="#{peritoController.peritoSelected.direccion}" style="font-weight:bold"/>
+                    
+                </h:panelGrid>
+                
+            </p:dialog>-->
+            
+              
+      
+           
+           
+     
+</h:form>  
+                
+                
+   </center>           
+</ui:define>
+
+</ui:composition>
+    <!--/h:body-->
+</html>           
+<!--</html>-->
+
+
+<!--<div id="tablaPaginada">
+  
+        <p:dataTable id="perito" var="item" value="#{peritoController.peritos}" 
+         paginator="true" rows="10" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+         rowsPerPageTemplate="5,10,15" widgetVar="usuarioTable" emptyMessage="No se encuentran datos" >            
+   
+          
+             <p:column id="column1" style="width:100px">
+             <f:facet name="header">             
+             <h:outputText value="nombre">  
+             </h:outputText>                                 
+             </f:facet> 
+             <h:outputText value="#{item.nombre}">
+             </h:outputText>
+             </p:column>
+
+             
+             <p:column id="column2" style="width:100px">
+             <f:facet name="header">
+             
+             <h:outputText value="nif">  
+             </h:outputText>                                       
+             </f:facet> 
+             <h:outputText value="#{item.nif}">
+             </h:outputText>
+             </p:column>
+
+             
+            <p:column>
+             <f:facet name="header" style="width:100px">
+             <h:outputText value="Direccion"/>
+             </f:facet>
+             <h:outputText value="#{item.direccion}"/>
+             </p:column>
+
+             
+            <p:column>
+             <f:facet name="header" style="width:100px">
+             <h:outputText value="Código Postal"/>
+             </f:facet>
+             <h:outputText value="#{item.codigoPostal}"/>
+             </p:column>
+             
+         
+             
+             <p:column>
+             <f:facet name="header">
+             <h:outputText value="Email"/>
+             </f:facet>
+             <h:outputText value="#{item.email}"/>
+             </p:column>
+              
+             
+             
+             
+             <p:column>
+             <f:facet name="header">
+             <h:outputText value="Telefono"/>
+             </f:facet>
+             <h:outputText value="#{item.telefono1}"/>
+             </p:column>                
+                
+                      
+             <p:column>
+             <f:facet name="header">
+             <h:outputText value="Provincia"/>
+             </f:facet>                          
+                 <h:outputText value="#{utilidades.getProv(item.poblacion.provincia.idprovincia)}"/>
+             </p:column>
+
+             
+            <p:column>
+             <f:facet name="header">
+             <h:outputText value="Poblacion"/>
+             </f:facet>             
+             <h:outputText value="#{utilidades.getPob(item.poblacion.provincia.idprovincia,item.poblacion.id.idpoblacion)}"/>             
+             </p:column>           
+              
+             
+             <p:column>
+             <f:facet name="header">
+             <h:outputText value="Serie de Factura"/>
+             </f:facet>             
+             <h:outputText value="#{utilidades.getSerie(item.serie.idserie)}"/>            
+             </p:column>
+                          
+
+             <p:column>  
+             <f:facet name="header">
+             <h:outputText value="Modificar"/>
+             </f:facet>
+                 
+             <h:commandButton action="#{peritoController.prepareView(item)}" value="Modificar Cliente"/>
+                        
+                  
+             </p:column> 
+             <p:column> 
+              <f:facet name="header">
+             <h:outputText value="Baja"/>
+             </f:facet>
+             <h:commandButton value="Baja Cliente" action="#{perito.baja(item)}"></h:commandButton>
+             </p:column> 
+             </p:dataTable>
+    
+          <p:column style="width:40px">
+            <h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+                <p:commandButton id="selectButton" update=":form:display" oncomplete="peritoDialog.show()"  icon="ui-icon-search"  title="View">
+                <f:setPropertyActionListener value="#{perito}" target="#{peritoController.peritoSelected}"/>
+                </p:commandButton>
+            </h:panelGrid>
+          </p:column>
+            
+            <p:dialog header="Detalle de perito" widgetVar="peritoDialog" resizable="true" id="carDlg" showEffect="fade" hideEffect="explode" modal="true">
+                <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <f:facet name="header">
+                        <h:outputText value="Datos de la fila seleccionada"/>
+                    </f:facet>
+                    <h:outputText value="Nombre: "/>
+                    <h:outputText value="#{peritoController.peritoSelected.nombre}" style="font-weight:bold"/>
+                    
+                    <h:outputText value="Cif: "/>
+                    <h:outputText value="#{peritoController.peritoSelected.nif}" style="font-weight:bold"/>
+                    
+                    <h:outputText value="Direccion: "/>
+                    <h:outputText value="#{peritoController.peritoSelected.direccion}" style="font-weight:bold"/>
+                </h:panelGrid>
+                
+            </p:dialog>
+    
+    
+ </div>
+ <br/>            
+                
+               
+<br/><br/>        
+
+
+<h:outputLink onclick="window.open('altacli.jsf', 'altacli', 'dependent=yes, menubar=no, toolbar=no');" value="#">
+        <h:outputText value="Alta Cliente" />
+</h:outputLink>
+&nbsp;&nbsp;&nbsp;-->
+     
+
+<!--</center>
+
+</h:form>
+</ui:define>
+</ui:composition>
+</html>-->
+

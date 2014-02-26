@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.InfFotosinforme" schema="GESTIONPERICIAL" table="INF_FOTOSINFORME">
+    <id name="idfoto" type="big_decimal">
+      <column name="IDFOTO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <!--property name="idInforme" type="big_decimal">
+      <column name="idInforme" not-null="true" precision="22" scale="0"/>
+    </property-->
+    <property name="nombreFoto" type="string">
+      <column length="100" name="NOMBREFOTO" not-null="true"/>
+    </property>
+    <property name="extensionArchivo" type="string">
+      <column length="6" name="EXTENSIONARCHIVO"/>
+    </property>
+    <property name="ruta" type="string">
+      <column length="100" name="RUTA" not-null="true"/>
+    </property>
+    <property name="tipo" type="string">
+      <column length="100" name="TIPO"/>
+    </property>
+    <!--set inverse="true" name="infInformeasegurado">
+      <key>
+        <column name="ASEGURADOCONTRARIO" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.InfInformeasegurado"/>
+    </set1-->
+       <many-to-one name="infInforme" class="models.InfInforme" fetch="select">
+            <column name="IDINFORME" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+  </class>
+</hibernate-mapping>

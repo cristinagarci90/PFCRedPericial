@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <!--h:form id="altaAsegPanel"-->
+        <ui:composition>
+            <p:panel id="panel"><!-- header="Provincia"--> 
+          <table border="0">
+              <tr>
+                    <td colspan="4">
+                        <table>
+                            <tr>
+                                 <td align="right">#{msg['name']}:</td>
+                                  <td>
+                                      <h:inputText label="#{msg['name']}" required="true" requiredMessage="#{msg['Required_field']} - #{msg['name']}" id="nombre" value="#{aseguradoManagedBean.actual.nombre}">
+                                          <p:ajax update="msgNombre" event="keyup" />  
+                                      </h:inputText>
+                                      <!--h:message for="personaContacto" /-->
+                                  </td>
+                                   <td align="right">#{msg['registration_number']}:</td>
+                                   <td>
+                                      <h:inputText label="#{msg['registration_number']}"  required="true" requiredMessage="#{msg['Required_field']} - #{msg['registration_number']}" id="matricula"  value="#{aseguradoManagedBean.actual.matricula}">
+                                           <p:ajax update="msgMatricula" event="keyup" />  
+                                      </h:inputText>
+                                      
+                                  </td>
+
+
+
+
+
+                                   </tr>
+                                  </table>
+                              </td>
+                           
+                        </tr>
+                       
+                          <tr><td colspan="4"><br/>
+                                      <h:outputLabel value="#{aseguradoManagedBean.actual.idasegurado}"/>
+                                    </td></tr>                        
+                          <!--Marca y Modelo -->
+                          
+                          <tr><td colspan="4"><br/></td></tr>
+                           <tr>
+                            <td align="right">#{msg['trademark']}:</td>
+                            <td>
+                                
+                                <h:selectOneMenu  id="marcas" value="#{aseguradoManagedBean.actual.marcas.idmarca}"  required="true" requiredMessage="#{msg['Required_field']} - #{msg['trademark']}"  style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="#{msg['Select_a']} #{msg['trademark']}" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{marcaManagedBean.provvalor}"/> 
+                                       <f:ajax execute="@this" render="modelo"/> 
+                                       <p:ajax update="msgMarca" event="valueChange"/>  
+                               </h:selectOneMenu>
+                               
+                            </td>
+                           <td align="right">Modelo:</td>
+                           <td> 
+                               <h:selectOneMenu  id="modelo" required="true" requiredMessage="#{msg['Required_field']} - Modelo" value="#{aseguradoManagedBean.actual.modelos.idmodelo}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="Seleccione un modelo" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{modelosManagedBean.getModelos(aseguradoManagedBean.actual.marcas.idmarca)}"/> 
+                                        <p:ajax update="msgModelo" event="valueChange"/> 
+                               </h:selectOneMenu>
+                                       
+                            <!--h:selectOneMenu  id="marcasCont" value="#{contrarioManagedBean.marcaClase.idmarca}" required="true" requiredMessage="#{msg['Required_field']} - #{msg['trademark']}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="#{msg['Select_a']} #{msg['trademark']}" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{marcaManagedBean.provvalor}"/> 
+                                       <f:ajax execute="@this" render="modeloCont"/> 
+                                       <p:ajax update="msgMarcaCont" event="valueChange"/>  
+                               </h:selectOneMenu>
+                               
+                            </td>
+                           <td align="right">Modelo:</td>
+                           <td> 
+                               <h:selectOneMenu  id="modeloCont" required="true" value="#{contrarioManagedBean.modeloClase.idmodelo}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="Seleccione un modelo" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{modelosManagedBean.getModelos(contrarioManagedBean.marcaClase.idmarca)}"/> 
+                                      
+                               </h:selectOneMenu-->
+
+                            </td>
+                               
+                        </tr>   
+                          <tr><td colspan="4"><br/></td></tr>
+                           <tr>
+                            <td align="right">#{msg['Select_a_province']}:</td>
+                            <td>
+                              <h:selectOneMenu  id="aseguradoprovincia" value="#{aseguradoManagedBean.actual.provincia}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="#{msg['Select_a_province']}" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                       <f:ajax execute="@this" render="aseguradopoblacion"/> 
+                               </h:selectOneMenu>
+                            </td>
+                           <td align="right">Siniestro Población:</td>
+                           <td> 
+                              <h:selectOneMenu  id="aseguradopoblacion" value="#{aseguradoManagedBean.actual.poblacion}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="#{msg['Select_a_province']}" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(aseguradoManagedBean.actual.provincia)}"/> 
+                                     
+                               </h:selectOneMenu>
+                                       
+                          
+
+                            </td>
+                               
+                        </tr>   
+                         
+                          <tr>
+                              <td colspan="5">
+                                   <p:message for="nombre" id="msgNombre" />
+                                   <p:message for="matricula" id="msgMatricula" />
+                                    <p:message for="marcas" id="msgMarca" />
+                                     <p:message for="modelo" id="msgModelo" />
+                              </td>
+                          </tr>
+                          <tr>
+                              <td colspan="5" align="center" >
+                                <p:commandButton type="reset" value="Borrar"/>
+                                <p:commandButton action="#{aseguradoManagedBean.updateRegister(informeManagedBean)}" value="Modificar" rendered="#{not empty informeManagedBean.actual.asegurado}" update="panel"  />
+                                <p:commandButton action="#{aseguradoManagedBean.newRegister(informeManagedBean)}" value="Guardar Nuevo" update="panel"  />
+                                <p:commandButton action="#{aseguradoManagedBean.quitarAsegurado(informeManagedBean)}" value="Quitar" rendered="#{not empty informeManagedBean.actual.asegurado}" update="panel"  />
+                               
+                              </td>
+                              
+                          </tr>
+                       
+                    </table>
+                   
+                   
+                
+         
+                           
+              
+
+    </p:panel>  
+             </ui:composition>
+         <!--/h:form-->
+    </h:body>
+</html>

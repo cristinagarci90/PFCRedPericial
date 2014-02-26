@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Marcas" schema="GESTIONPERICIAL" table="MARCAS">
+    <id name="idmarca" type="big_decimal">
+      <column name="IDMARCA" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="marca" type="string">
+      <column length="50" name="MARCA" not-null="true"/>
+    </property>
+    <property name="baja" type="string">
+      <column length="1" name="BAJA"/>
+    </property>
+    <set inverse="true" name="modeloses">
+      <key>
+        <column name="IDMARCA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.Modelos"/>
+    </set>
+    <set inverse="true" name="infasegurado">
+      <key>
+        <column name="MARCA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.Infasegurado"/>
+    </set>
+      <set inverse="true" name="infContrario">
+      <key>
+        <column name="MARCA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.InfContrario"/>
+    </set>
+  </class>
+</hibernate-mapping>

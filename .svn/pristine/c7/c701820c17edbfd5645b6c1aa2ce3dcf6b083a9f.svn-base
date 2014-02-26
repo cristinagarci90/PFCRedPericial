@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+   
+  <class name="models.Infasegurado" schema="GESTIONPERICIAL" table="INFASEGURADO">
+    <id name="idasegurado" type="big_decimal">
+      <column name="IDASEGURADO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <!--version name="v" column="v" unsaved-value="undefined" type="int"/--> 
+    <many-to-one class="models.Modelos" fetch="select" name="modelos">
+      <column name="MODELO" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="models.Marcas" fetch="select" name="marcas">
+      <column name="MARCA" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="models.Tipovehiculo" fetch="select" name="tipovehiculo">
+      <column name="TIPOVEHICULO" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column length="200" name="NOMBRE" not-null="true"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="200" name="DIRECCION"/>
+    </property>
+    <property name="poblacion" type="string">
+      <column length="4" name="POBLACION"/>
+    </property>
+    <property name="provincia" type="string">
+      <column length="2" name="PROVINCIA"/>
+    </property>
+    <property name="codigopostal" type="string">
+      <column length="20" name="CODIGOPOSTAL"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="20" name="TELEFONO"/>
+    </property>
+    <property name="email" type="string">
+      <column length="50" name="EMAIL"/>
+    </property>
+    <property name="edad" type="big_decimal">
+      <column name="EDAD" precision="22" scale="0"/>
+    </property>
+    <property name="matricula" type="string">
+      <column length="20" name="MATRICULA" not-null="true"/>
+    </property>
+    <property name="fechamatricula" type="string">
+      <column length="20" name="FECHAMATRICULA"/>
+    </property>
+    <property name="numerobastidor" type="string">
+      <column length="100" name="NUMEROBASTIDOR"/>
+    </property>
+    <property name="tipo" type="big_decimal">
+      <column name="TIPO" precision="22" scale="0"/>
+    </property>
+    <property name="fechainiciopoliza" type="string">
+      <column length="20" name="FECHAINICIOPOLIZA"/>
+    </property>
+    <set inverse="true" name="infInformeasegurado">
+      <key>
+        <column name="ASEGURADOCONTRARIO" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.InfInformeasegurado"/>
+    </set>
+  </class>
+</hibernate-mapping>

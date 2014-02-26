@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <application>
+        <locale-config>
+            <default-locale>es</default-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+                
+        <resource-bundle>
+            <base-name>languagesTexts.texts</base-name>
+            <var>msg</var>
+        </resource-bundle>
+    </application>
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/loginError.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>5</from-outcome>
+            <to-view-id>/TipoUsuario_Informatica/InicioInformatica.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>3</from-outcome>
+            <to-view-id>/TipoUsuario_Perito/InicioPerito.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>2</from-outcome>
+            <to-view-id>/TipoUsuario_Administracion/InicioAdministracion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/loginError.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/loginError.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>5</from-outcome>
+            <to-view-id>/TipoUsuario_Informatica/InicioInformatica.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>3</from-outcome>
+            <to-view-id>/TipoUsuario_Perito/InicioPerito.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>2</from-outcome>
+            <to-view-id>/TipoUsuario_Administracion/InicioAdministracion.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    
+    
+</faces-config>

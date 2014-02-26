@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+   
+    <!--h:head>
+        <title>Gestión Provincia</title>
+    </h:head>
+    <h:body-->
+     <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Listado de informe
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+                    <h:form id="form">
+
+                          <p:commandButton value="Load" type="button" onclick="lazyload()" id="btnLoad" />
+
+                      <p:outputPanel id="lazypanel" layout="block">
+                          <h:outputText value="This part of page is lazily loaded on demand using a RemoteCommand" 
+                                          rendered="#{requestScope.shouldRender}"/>
+                      </p:outputPanel>
+
+                          <p:remoteCommand name="lazyload" update="lazypanel">
+                                  <f:setPropertyActionListener value="#{true}" 
+                                  target="#{requestScope.shouldRender}" />
+                          </p:remoteCommand>
+
+                  </h:form>
+            </center>           
+</ui:define>
+
+</ui:composition>
+    <!--/h:body-->
+</html>

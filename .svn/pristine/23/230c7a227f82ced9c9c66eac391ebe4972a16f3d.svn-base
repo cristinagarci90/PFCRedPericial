@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Roles" schema="GESTIONPERICIAL" table="ROLES">
+    <id name="codrol" type="big_decimal">
+      <column name="CODROL" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="desrol" type="string">
+      <column length="150" name="DESROL"/>
+    </property>
+    <set inverse="true" name="usuarios">
+      <key>
+        <column name="ROL" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.Usuario"/>
+    </set>
+  </class>
+</hibernate-mapping>

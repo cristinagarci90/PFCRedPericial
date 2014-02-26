@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Alta de Talleres
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+                <h:form id="ataller">  
+                <h3><bold>ALTA DE TALLER</bold></h3>
+        <p:accordionPanel  multiple="true" style="width: 800px"  dynamic="true" >
+     
+          
+         <p:tab title="Informacion Basica">  
+                                
+                                <table>
+                                    <tr>
+                                        <td align="left">    
+                                             <h:outputLabel value="Nombre :" /> 
+                                        </td>
+                                    <td align="left"> 
+                                    <p:inputText id="nombre" value="#{tallerManagedBean.actualNuevo.nombre}" required="true"
+                                                 requiredMessage="Nombre requerido">                                                                                     
+                                    </p:inputText>
+                                    <p:watermark for="nombre" value="Nombre Taller *" />
+                                    <p:message for="nombre"/>
+                                    </td>
+                                        
+                                     <td align="left">
+                                            <h:outputLabel value="CIF :" />
+                                        </td>
+                                    <td align="left">
+                                        <p:inputText id="cif" value="#{tallerManagedBean.actualNuevo.cif}" required="true"
+                                                 requiredMessage="Cif requerido"
+                                                 validatorMessage="maximo 10 caracteres" >
+                                        <f:validateLength maximum="10" />
+                                    </p:inputText>
+                                     <p:watermark for="cif" value="Cif Taller *" />
+                                     <p:message for="cif"/>
+                                    </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td align="left">
+                                            <h:outputLabel value="Telefono1 : " />
+                                        </td>
+                                        <td align="left">
+                                            <p:inputText id="telefono1" value="#{tallerManagedBean.actualNuevo.tfno1}" />
+                                    <p:watermark for="telefono1" value="Telefono1 Taller " />
+                                    <p:message for="telefono1" /> 
+                                        </td>
+                                    <td align="left">  
+                                        <h:outputLabel value="Telefono2 :" />
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="telefono2" value="#{tallerManagedBean.actualNuevo.tfno2}" />
+                                     <p:message for="telefono2" />
+                                    <p:watermark for="telefono2" value="Telefono2 Taller" />
+                                    </td>
+                                    </tr>
+                                    
+                                                                    
+                                    
+                                    <tr>
+                                    <td align="left">  
+                                        <h:outputLabel value="Denominacion :" />
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="denominacion" value="#{tallerManagedBean.actualNuevo.denominacion}" />
+                                    <p:watermark for="denominacion" value="Denominacion Taller" />
+                                   
+                                    </td>
+                                        
+                                    <td align="left">  
+                                        <h:outputLabel value="Email :" />
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="email"  validatorMessage="Formato de email no válido" value="#{tallerManagedBean.actualNuevo.email}">
+                                        <f:validateRegex
+                        		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
+                                    <p:watermark for="email" value="Direccion Email " />
+                                    <p:message for="email" />
+
+                                    </td>
+                                    </tr>                                
+                                    
+                                    
+                                    
+                                    <tr>
+                                    <td align="left">  
+                                        <h:outputLabel value="Fax :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="fax" value="#{tallerManagedBean.actualNuevo.fax}" />
+                                    <p:watermark for="fax" value="Fax Taller" />
+                                     <p:message for="fax" />
+                                    
+                                    </td>
+                                        
+                                     <td align="left">  
+                                        <h:outputLabel value="Cuenta :"/> 
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="cuenta" value="#{tallerManagedBean.actualNuevo.cuenta}" />
+                                    <p:watermark for="cuenta" value="Cuenta" />
+                                   
+                                    </td>
+                                    </tr>
+                                                                  
+                                    
+                                   
+                                    
+                                    
+                                     <tr>
+                                    <td align="left">  
+                                        <h:outputLabel value="Avisos :" />
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="avisos" value="#{tallerManagedBean.actualNuevo.avisos}" />
+                                    <p:watermark for="avisos" value="Avisos" />
+                                    <p:message for="avisos" />
+                                    </td>
+                                         
+                                     <td align="left">
+                                        <h:outputLabel value="Direccion :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="direccion" value="#{tallerManagedBean.actualNuevo.direccion}" required="true"
+                                                 requiredMessage="Direccion requerida">
+                                                 
+                                    </p:inputText>
+                                    <p:message for="direccion" />
+                                    <p:watermark for="direccion" value="Direccion *" />
+                                    </td>    
+                                    </tr>
+                                    
+                                    
+                                    
+                                 
+                                    <tr>
+                                    <td align="left">
+                                        <h:outputLabel value="Codigo Postal :" />
+                                    </td>
+                                        <td align="left">
+                                            <p:inputText id="codigoPostal" value="#{tallerManagedBean.actualNuevo.cp}"/>                                     
+                                    
+                                    <p:watermark for="codigoPostal" value="Codigo Postal" />
+                                        </td>
+                                        
+                                         <td align="left">
+                                        <h:outputLabel value="Grupo Taller:" />
+                                    </td>
+                                        <td> 
+                                           
+                                           
+                                                <p:selectOneMenu id="grupo" value="#{tallerManagedBean.actualNuevo.grupotaller}" style="width:175px">
+                                            <f:selectItem itemLabel="Seleccione un Grupo de Taller" itemValue="" />  
+                                           <f:selectItems value="#{grupotallerManagedBean.provvalor}" />  
+                                          
+                                         </p:selectOneMenu>                                                 
+                                            
+                                          
+                                        
+                                       
+                                       
+
+
+                                        </td>
+                                    </tr>                
+                                       
+                                     <tr>
+                                       <td align="left">
+                                           <h:outputLabel value="Provincia/Población :" />
+                                        </td> 
+                                        <td>   
+                                            <p:selectOneMenu id="provincia" value="#{clienteManagedBean.actualNuevo.idprovincia}" style="width:175px" 
+                                                             required="true" requiredMessage="Provincia obligatoria"> 
+                                                <f:selectItem 
+                                                            itemLabel="Seleccione una provincia" 
+                                                itemValue="" /> 
+                                        <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                        <f:ajax 
+                                        execute="@this" 
+                                        render="poblacion"/>                                         
+                                         </p:selectOneMenu>  
+                                         <p:message for="provincia" />
+                                        </td>  
+                                        <td>   
+                                            <p:selectOneMenu  value="#{clienteManagedBean.actualNuevo.idpoblacion}" id="poblacion" style="width:175px"
+                                                              required="true" requiredMessage="Poblacion Obligatoria"> 
+                                         <f:selectItem itemLabel="Seleccione una Población" 
+                                        itemValue=""/> 
+                                        <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(clienteManagedBean.actualNuevo.idprovincia)}"/> 
+                                        </p:selectOneMenu>
+                                        </td>
+                                   
+                                        
+                                        
+                                        <td>
+                                           <h:commandButton action="AGrupoTaller.xhtml" value="Nuevo Grupo Taller" />
+
+ 
+
+                                                   
+
+
+                                        </td>
+                                    </tr>                                                                  
+                                                                     
+                                                                
+                                </table>
+                        </p:tab>
+                
+         
+         <p:tab title="Detalle" >
+         
+             <table>
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Distancia Gabinete :" />
+             </td>
+            <td align="left">  
+                <p:inputText id="distancia" value="#{tallerManagedBean.actualNuevo.distanciaGabinete}" />
+             <p:message for="distancia"/>
+            </td>
+            </tr>
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Precio Hora :" />
+             </td>
+             <td align="left">  
+                 <p:inputText id="preciohora" value="#{tallerManagedBean.actualNuevo.precioHora}" />
+             <p:message for="preciohora"/>
+             </td>
+                 </tr> 
+              <tr>    
+             <td align="left">  
+             <h:outputText value="Fecha de alta :" /> 
+             </td>
+             <td align="left">  
+             <h:outputText value="#{tallerManagedBean.actualNuevo.fechaAlta}" id="popupButtonDate">              
+             <f:convertDateTime pattern="dd/mm/yyyy"/>  
+             </h:outputText>            
+                 
+             <p:calendar value="#{tallerManagedBean.actualNuevo.fechaAlta}" id="popupButtonCal" showOn="button" />
+             </td>
+              </tr>
+                 
+             <tr>
+                       <td align="left">Tipo de Taller (Compromiso):</td>
+                       <td align="left">
+                           <h:selectOneRadio id="tipotaller" value="#{tallerManagedBean.actualNuevo.tipotaller}">
+          <f:selectItem itemValue="S" itemLabel="Si"/>
+          <f:selectItem itemValue="N" itemLabel="No"/>     
+        </h:selectOneRadio>
+         
+        </td>
+                   </tr>
+             </table>
+     
+         </p:tab>          
+          
+         
+         
+         
+          
+        </p:accordionPanel>  
+            
+       
+            
+          
+         
+         
+       
+       
+         
+         
+          
+        
+         
+             
+                 
+                 
+            
+        
+       
+        
+        
+        
+        
+                <center>
+                 <h:outputLabel value="Baja: " for="baja"/> 
+                    <p:watermark for="baja" value="Baja S/N">
+                  <p:selectOneMenu value="#{tallerManagedBean.actualNuevo.baja}" required="true" id="baja" >
+                      
+            <f:selectItem itemLabel="N" itemValue="N" />              
+            <f:selectItem itemLabel="S" itemValue="S" />  
+            
+   </p:selectOneMenu> 
+                    </p:watermark>
+         <br></br>
+         <p:messages id="messages" />
+                    
+                 <br></br>
+                  <h:commandButton action="#{tallerManagedBean.newRegister()}" value="Guardar"/>
+                </center>
+        
+       
+            
+               
+                
+                
+                
+               
+    
+
+        
+        
+        
+        
+        
+</h:form>  
+                
+                
+   </center>           
+</ui:define>
+
+</ui:composition>
+    
+</html>           
+

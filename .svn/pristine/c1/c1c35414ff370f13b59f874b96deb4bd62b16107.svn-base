@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27-may-2013 14:26:50 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="models.ClienteTextoAvance" table="CLIENTE_TEXTO_AVANCE" schema="GESTIONPERICIAL">
+        <id name="idclientetextoavance" type="big_decimal">
+            <column name="IDCLIENTETEXTOAVANCE" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+       <many-to-one name="textoAvance" class="models.TextoAvance" fetch="select">
+            <column name="IDTEXTOAVANCE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="cliente" class="models.Cliente" fetch="select">
+            <column name="IDCLIENTE" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

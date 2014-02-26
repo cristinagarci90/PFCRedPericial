@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.FotosTarifa" schema="GESTIONPERICIAL" table="FOTOS_TARIFA">
+    <id name="idtramofoto" type="big_decimal">
+      <column name="IDTRAMOFOTO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="models.Tarifa" fetch="select" name="tarifa">
+      <column name="IDTARIFA" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="importetramo" type="big_decimal">
+      <column name="IMPORTETRAMO" precision="22" scale="0"/>
+    </property>
+    <property name="numfotos" type="big_decimal">
+      <column name="NUMFOTOS" precision="22" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

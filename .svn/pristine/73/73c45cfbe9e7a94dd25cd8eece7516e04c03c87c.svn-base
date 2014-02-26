@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Alta de Series
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+             
+       <h:form>   
+         <p:panelGrid columns="2">  
+        <f:facet name="header">  
+        Nueva Serie  
+        </f:facet> 
+
+          
+    <h:outputLabel for="codigo" value="Codigo" />  
+    <p:inputText id="codigo" value="#{seriesManagedBean.actualNuevo.codigo}" label="Codigo" />  
+  
+    <h:outputLabel for="descripcion" value="Descripcion" />  
+    <p:inputText id="descripcion" value="#{seriesManagedBean.actualNuevo.descripcion}"  required="true" label="Descripcion"/>  
+
+    
+     <h:outputLabel for="ejercicio" value="Ejercicio" />    
+     <p:selectOneMenu id="ejercicio" value="#{ejercicioManagedBean.actualNuevo.idejercicio}">  
+                <f:selectItem itemLabel="Seleccione Ejercicio" itemValue="" />  
+                <f:selectItems value="#{ejercicioManagedBean.provvalor}" />                  
+            </p:selectOneMenu>  
+
+    <h:outputLabel for="contador" value="Contador" />  
+    <p:inputText id="contador" value="#{contadorManagedBean.actualNuevo.contador}"  required="true" label="Contador"/>  
+
+       
+            <f:facet name="footer">  
+                <center>
+            <!--<p:commandButton type="button" action="#{seriesManagedBean.newRegister()}" value="Guardar" icon="ui-icon-check" style="margin:0" />  -->
+                 <p:commandButton action="#{seriesManagedBean.newRegister()}" value="Guardar Nuevo" />
+                </center>
+             </f:facet>  
+
+       
+         </p:panelGrid>
+    
+</h:form>  
+                
+                
+                
+   </center>  
+ 
+</ui:define>
+
+</ui:composition>
+    
+</html>           
+

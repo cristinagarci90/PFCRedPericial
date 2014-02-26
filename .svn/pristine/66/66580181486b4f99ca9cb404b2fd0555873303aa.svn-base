@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+     <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Maestro de Talleres
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+    <h:form >  
+         <p:growl id="messages" showDetail="true"/>
+        <h3><bold>LISTADO DE TALLERES</bold></h3>
+        <br></br>
+                              
+       <p:dataTable id="idListadoTalleres" var="talleres" value="#{tallerManagedBean.listado}" style="width:900px"
+                 paginator="true" rows="3"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="1,2,3,5"
+                 widgetVar="tablaTaller"   emptyMessage="No se encontraron taller" >
+             
+           <f:facet name="header"> 
+               
+                 <p:inputText id="globalFilter" onkeyup="tablaTaller.filter()" style="width:150px" />
+           </f:facet>  
+      
+            
+            <p:column headerText="ID"  sortBy="#{talleres.idtaller}" filterBy="#{talleres.idtaller}" >
+                <h:outputText value="#{talleres.idtaller}"/>
+            </p:column>
+            <p:column headerText="Nombre"  sortBy="#{talleres.nombre}" filterBy="#{talleres.nombre}" >
+                <h:outputText value="#{talleres.nombre}"/>
+            </p:column>
+           
+            <p:column headerText="Direccion"  sortBy="#{talleres.direccion}" filterBy="#{talleres.direccion}" >
+                <h:outputText value="#{talleres.direccion}"/>
+            </p:column>
+            <p:column headerText="Cif"  sortBy="#{talleres.cif}" filterBy="#{talleres.cif}" >
+                <h:outputText value="#{talleres.cif}"/>
+            </p:column>    
+           
+            <p:column>
+                     <h:commandButton action="#{tallerManagedBean.modificar(talleres)}" value="#{msg['modify']}"/>
+                     
+                </p:column>
+             
+                 </p:dataTable>
+         
+ 
+                
+    </h:form>          
+   </center>           
+</ui:define>
+
+</ui:composition>
+    <!--/h:body-->
+</html>    
+

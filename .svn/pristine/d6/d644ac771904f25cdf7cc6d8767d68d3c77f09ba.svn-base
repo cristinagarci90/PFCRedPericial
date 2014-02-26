@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+    <ui:composition>
+     <div class="menu">
+	<ul>
+		<li><a href="#">Inicio Informática</a></li>
+		<li><a href="#">Informes</a>
+		<ul><span></span>
+			<li><a href="#{informeManagedBean.Nuevo()}">Nuevo</a></li>
+			<li><a href="#">Buscar</a></li>
+			<li><a href="listInformes.xhtml">Listado</a></li>
+			<li><a href="#"></a></li>
+		</ul>
+		</li>
+		<!--li><a href="#">Minutas</a>
+		<ul><span></span>
+			<li><a href="#">Buscar</a></li>
+			<li><a href="#"></a></li>
+		</ul></li>
+		<li><a href="#">Maestros</a>
+		<ul><span></span>
+			<li><a href="Peritos.jsf">Perito</a></li>
+			<li><a href="Clientes.jsf">Cia</a></li>
+                        <li><a href="Series.jsf">Series</a></li>
+			<li><a href="Vehiculos.jsf">Vehiculos</a></li>
+			<li><a href="Estados.jsf">Estados</a></li>
+                        <li><a href="Talleres.jsf">Talleres</a></li>
+                        <li><a href="Tarifa.jsf">Tarifas</a></li>
+		</ul>
+		</li>
+		<li><a href="#">Cerrar</a></li>
+		<li><a href="#"></a></li-->
+	</ul>
+	</div>	</ui:composition>
+</html>
+

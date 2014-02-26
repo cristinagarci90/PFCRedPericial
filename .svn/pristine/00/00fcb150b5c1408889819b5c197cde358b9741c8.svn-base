@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Tarifa" schema="GESTIONPERICIAL" table="TARIFA">
+    <id name="idtarifa" type="big_decimal">
+      <column name="IDTARIFA" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="100" name="NOMBRE"/>
+    </property>
+    <property name="visfallida" type="big_decimal">
+      <column name="VISFALLIDA" precision="22" scale="0"/>
+    </property>
+    <property name="sintotalsin" type="big_decimal">
+      <column name="SINTOTALSIN" precision="22" scale="0"/>
+    </property>
+    <property name="sintotalvalsin" type="big_decimal">
+      <column name="SINTOTALVALSIN" precision="22" scale="0"/>
+    </property>
+    <property name="sintotalvalsinmin" type="big_decimal">
+      <column name="SINTOTALVALSINMIN" precision="22" scale="0"/>
+    </property>
+    <property name="sintotalvalsinmax" type="big_decimal">
+      <column name="SINTOTALVALSINMAX" precision="22" scale="0"/>
+    </property>
+    <property name="sintotalvalcon" type="big_decimal">
+      <column name="SINTOTALVALCON" precision="22" scale="0"/>
+    </property>
+    <property name="sintotalvalconmin" type="big_decimal">
+      <column name="SINTOTALVALCONMIN" precision="22" scale="0"/>
+    </property>
+    <property name="sintotalvalconmax" type="big_decimal">
+      <column name="SINTOTALVALCONMAX" precision="22" scale="0"/>
+    </property>
+    <property name="veriflugar" type="big_decimal">
+      <column name="VERIFLUGAR" precision="22" scale="0"/>
+    </property>
+    <property name="verifunidad" type="big_decimal">
+      <column name="VERIFUNIDAD" precision="22" scale="0"/>
+    </property>
+    <property name="inspeccion" type="big_decimal">
+      <column name="INSPECCION" precision="22" scale="0"/>
+    </property>
+    <property name="comprobdanos" type="big_decimal">
+      <column name="COMPROBDANOS" precision="22" scale="0"/>
+    </property>
+    <property name="comprobfactura" type="big_decimal">
+      <column name="COMPROBFACTURA" precision="22" scale="0"/>
+    </property>
+    <property name="comprobaveria" type="big_decimal">
+      <column name="COMPROBAVERIA" precision="22" scale="0"/>
+    </property>
+    <property name="asistenciajuicio" type="big_decimal">
+      <column name="ASISTENCIAJUICIO" precision="22" scale="0"/>
+    </property>
+    <property name="visseguimiento" type="big_decimal">
+      <column name="VISSEGUIMIENTO" precision="22" scale="0"/>
+    </property>
+    <property name="honormin" type="big_decimal">
+      <column name="HONORMIN" precision="22" scale="0"/>
+    </property>
+    <property name="asisjuiciofuera" type="big_decimal">
+      <column name="ASISJUICIOFUERA" precision="22" scale="0"/>
+    </property>
+    <property name="informetecnico" type="big_decimal">
+      <column name="INFORMETECNICO" precision="22" scale="0"/>
+    </property>
+    <property name="revislda" type="big_decimal">
+      <column name="REVISLDA" precision="22" scale="0"/>
+    </property>
+    <property name="previorecons" type="big_decimal">
+      <column name="PREVIORECONS" precision="22" scale="0"/>
+    </property>
+    <property name="discrepaseg" type="big_decimal">
+      <column name="DISCREPASEG" precision="22" scale="0"/>
+    </property>
+    <property name="peritlunas" type="big_decimal">
+      <column name="PERITLUNAS" precision="22" scale="0"/>
+    </property>
+    <property name="impmaxfotos" type="big_decimal">
+      <column name="IMPMAXFOTOS" precision="22" scale="0"/>
+    </property>
+    <property name="audatexman" type="big_decimal">
+      <column name="AUDATEXMAN" precision="22" scale="0"/>
+    </property>
+    <property name="audatexproc" type="big_decimal">
+      <column name="AUDATEXPROC" precision="22" scale="0"/>
+    </property>
+    <property name="gtestimate" type="big_decimal">
+      <column name="GTESTIMATE" precision="22" scale="0"/>
+    </property>
+    <property name="manual" type="big_decimal">
+      <column name="MANUAL" precision="22" scale="0"/>
+    </property>
+    <property name="desplazamiento" type="big_decimal">
+      <column name="DESPLAZAMIENTO" precision="22" scale="0"/>
+    </property>
+    <property name="limite" type="big_decimal">
+      <column name="LIMITE" precision="22" scale="0"/>
+    </property>
+    <property name="tramokm" type="string">
+      <column length="1" name="TRAMOKM"/>
+    </property>
+    <property name="tramofoto" type="string">
+      <column length="1" name="TRAMOFOTO"/>
+    </property>
+    <property name="importefotos" type="big_decimal">
+      <column name="IMPORTEFOTOS" precision="22" scale="0"/>
+    </property>
+    <property name="importefotosmax" type="big_decimal">
+      <column name="IMPORTEFOTOSMAX" precision="22" scale="0"/>
+    </property>
+    <property name="importefotosmin" type="big_decimal">
+      <column name="IMPORTEFOTOSMIN" precision="22" scale="0"/>
+    </property>
+    <property name="limiteHonorarios" type="big_decimal">
+      <column name="LIMITE_HONORARIOS" precision="22" scale="0"/>
+    </property>
+    <set inverse="true" name="honorarioses">
+      <key>
+        <column name="IDTARIFA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.Honorarios"/>
+    </set>
+    <set inverse="true" name="fotosTarifas">
+      <key>
+        <column name="IDTARIFA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.FotosTarifa"/>
+    </set>
+    <set inverse="true" name="tramosKms">
+      <key>
+        <column name="IDTARIFA" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.TramosKm"/>
+    </set>
+  </class>
+</hibernate-mapping>

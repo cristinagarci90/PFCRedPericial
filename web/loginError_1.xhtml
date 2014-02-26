@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+     <h:head>
+        <title>Facelet Title</title>
+            <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+   
+    </h:head>
+    <h:body>
+        <h:form>
+             <table width="100%" border="0">
+            <tr>
+                <td > <img src="../img/Logo.png" /><br /><br /><br /></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <table>
+                        <tr><td>#{Login.mensaje} -     #{mailController.mensajeWeb} 
+                                     </td></tr>
+                        <tr>
+                            <td>
+                                
+                               <table width="298" height="171" border="0" align="center" cellpadding="0" cellspacing="0" background="../img/fondoTbLogin.png">
+                                    <tr><td><br /></td></tr>
+                                   <!---->
+                                     
+                                      <tr align="center">
+                                        <td  colspan="4" align="right"><span class="txt2">
+                                                <strong><h:outputText value="#{msg['user']}" /> : </strong></span></td>
+                                        <td colspan="4" align="left">
+                                             <div align="center">
+                                                 <p:inputText  value="#{Login.nombreUsu}" size="10" />
+                                             </div>
+                                        </td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td  colspan="4" align="right"><span class="txt2"> 
+                                                <strong><h:outputText value="#{msg['password']}" /> : </strong></span></td>
+                                        <td colspan="4" align="left">
+                                            <div align="center">
+                                                <p:password id="login" value="#{Login.password}" feedback="false" size="10"/>  
+                                            </div> 
+                                            </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8">
+
+                                            <div align="center">
+                                                 <h:commandButton value="#{msg['enter']}"  action="#{Login.submit()}"/>
+                                           </div>
+                                        </td>
+
+                                    </tr>
+                                   <tr>
+                                        <td colspan="8">
+
+                                            <div align="center">
+                                                <p:commandButton id="showDialogButton" type="button" value="#{msg['Remember_login']}" onclick="dlg.show()" />  
+                                              
+                                                 
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr><td colspan="8"><br /></td></tr>
+                                </table>
+
+                            </td>
+
+                            <td>
+                                <img src="../img/llaves.png" width="91" height="128" />
+                            </td>
+
+
+
+
+                        </tr>
+                            </table>
+                </td>
+            </tr>
+        </table> 
+              </h:form>
+         <!--para recordar contraseña-->
+                      
+                            <p:dialog widgetVar="dlg" modal="true" header="#{msg['EnterYourEmail']}">  
+                                <h:form>  
+               <p:ajax event="change" process="dlg"
+                update="dlg"
+                listener="#{mailController.sendMailCorreo(Login.email)}" />
+                      
+                                    <h:panelGrid columns="2" cellpadding="5"> 
+                                           #{Login.mensaje}-#{mailController.mensajeWeb}
+                                         <h:outputLabel for="email" value="#{mailController.mensajeWeb}" /> 
+                                         <br/>
+                                        <p:inputText  value="#{Login.email}" />
+
+                                        <f:facet name="footer">  
+                                             <p:commandButton id="submitButton" 
+                                                              action="#{mailController.sendMailCorreo(Login.email)}"
+					  value="#{msg['Send']}"/>
+                                             <!--oncomplete="handleLoginRequest(xhr, status, args)" actionListener="#{mailController.sendMailCorreo(Login.email)}" -->
+                                                            <!--  action="#{mailController.sendMailCorreo(Login.email)}" update=":display" /--><!-- oncomplete="dlg.hide();"/--> 
+                                        </f:facet>  
+                                    </h:panelGrid>  
+
+                                </h:form>  
+                            </p:dialog>  
+
+         <!--FIN de para recordar contraseña-->
+        <div id="promo" >
+            <div class="wrap">	
+
+
+
+                <div id="footer">
+                    <p>Copyright &copy; 2011 &minus; abcde abcde abcde abcde abcde abcde, <a title="RAIX Ingenier&iacute;a y Peritaciones" href="http://www.raix.es/">RAIX</a></p>
+                </div>
+            </div>
+        </div>
+            
+    
+         
+         
+         
+         <!--PRUEBA-->
+         <h:outputLink id="loginLink" value="javascript:void(0)" onclick="dlg2.show()" title="login">	
+	<p:graphicImage value="/images/login.png" />
+</h:outputLink>
+
+<!--p:growl id="growl" showDetail="true" life="3000" /-->
+
+<p:dialog id="dialog" header="Login" widgetVar="dlg2">
+	<h:form>
+
+		<h:panelGrid columns="2" cellpadding="5">
+			<h:outputLabel for="username" value="Username:" />
+			<p:inputText value="#{Login.nombreUsu}" 
+					id="username" required="true" label="username" />
+			
+			<h:outputLabel for="password" value="Password:" />
+			<h:inputSecret value="#{Login.password}" 
+					id="password" required="true" label="password" />
+			
+			<f:facet name="footer">
+				<p:commandButton id="loginButton" value="Login" update=":growl"
+					actionListener="#{mailController.sendMailCorreo(Login.email)}"
+					oncomplete="handleLoginRequest(xhr, status, args)"/>
+                                
+			</f:facet>
+		</h:panelGrid>
+		
+	</h:form>
+</p:dialog>
+
+<script type="text/javascript">
+	function handleLoginRequest(xhr, status, args) {
+		if(args.validationFailed || !args.loggedIn) {
+			jQuery('#dialog').effect("shake", { times:3 }, 100);
+		} else {
+			dlg.hide();
+			jQuery('#loginLink').fadeOut();
+		}
+	}
+</script>
+				
+         
+         
+         
+         
+         
+    </h:body>
+
+</html>
+
+

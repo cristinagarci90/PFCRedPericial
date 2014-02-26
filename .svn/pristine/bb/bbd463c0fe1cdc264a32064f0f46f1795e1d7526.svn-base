@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Modificar Estado
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+             
+ <h:form>  
+ 
+ 
+
+  
+   
+     <p:panelGrid  columns="2" style="margin-top:30px; text-align: left">  
+ <f:facet name="header">  
+ Modificar Estado
+ </f:facet>
+       
+       
+       <h:outputLabel value="Tipo de Estado: * " for="tipo"/>
+       
+    
+    <p:watermark for="tipo" value="Tipo de Estado" >
+  <p:selectOneMenu value="#{estadosManagedBean.actual.tipo}" required="true" id="tipo"
+                   requiredMessage="Tipo de Estado obligatorio">  
+            <f:selectItem itemLabel="Tipo de Estado" itemValue="" />  
+            <f:selectItem itemLabel="A" itemValue="A" />  
+            <f:selectItem itemLabel="C" itemValue="C" />  
+            <f:selectItem itemLabel="X" itemValue="X" />  
+   </p:selectOneMenu> 
+   
+   </p:watermark>
+   
+   
+    <h:outputLabel for="codigo" value="Codigo : *" />
+    <p:watermark for="codigo" value="Codigo del Estado">
+        <p:inputText id="codigo" value="#{estadosManagedBean.actual.codigo}" label="Codigo" required="true" 
+                     requiredMessage="Codigo de Estado Obligatorio">
+            <f:validateLength minimum="1" maximum="20" />
+    </p:inputText>      
+
+    </p:watermark>
+  
+    
+    
+    <h:outputLabel for="descripcion" value="Descripcion : *" style="text-align: left" />  
+    <p:watermark for="descripcion" value="Descripcion del Estado" >
+    <p:inputText id="descripcion" value="#{estadosManagedBean.actual.descripcion}"  required="true" 
+                 label="Descripcion" requiredMessage="Descripcion Obligatoria"/>  
+    </p:watermark>
+   
+    
+   <h:outputLabel value="Baja: " for="baja"/> 
+   <p:watermark for="baja" value="Baja S/N">
+   <p:selectOneMenu value="#{estadosManagedBean.actual.baja}" required="true" id="baja" >
+                      
+            <f:selectItem itemLabel="N" itemValue="N" />              
+            <f:selectItem itemLabel="S" itemValue="S" />  
+            
+   </p:selectOneMenu> 
+   </p:watermark>
+   
+   
+            <f:facet name="footer">  
+                <center>
+           
+                 <h:commandButton action="#{estadosManagedBean.updateRegister}" value="Guardar"/>
+                  <h:commandButton action="MEstados" value="Cancelar"/>
+                </center>
+             </f:facet>  
+       
+         </p:panelGrid>
+     
+     <table>
+         <tr>
+             <td>
+   <p:message for="tipo"/>
+   <p:message for="codigo"/>
+   <p:message for="descripcion"/>
+             </td>
+         </tr>
+     </table>
+  
+
+</h:form>  
+                
+                
+                
+   </center>  
+ 
+</ui:define>
+
+</ui:composition>
+    
+</html>           
+

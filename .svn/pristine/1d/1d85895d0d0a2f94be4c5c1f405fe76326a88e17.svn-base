@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-sep-2013 14:08:23 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="modelsMaestros.Contador" schema="MAESTROS" table="CONTADOR">
+    <composite-id class="modelsMaestros.ContadorId" name="id">
+      <key-property name="idserie" type="big_decimal">
+        <column name="IDSERIE" precision="22" scale="0"/>
+      </key-property>
+      <key-property name="idejercicio" type="big_decimal">
+        <column name="IDEJERCICIO" precision="22" scale="0"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="modelsMaestros.Ejercicio" fetch="select" insert="false" name="ejercicio" update="false">
+      <column name="IDEJERCICIO" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="modelsMaestros.Series" fetch="select" insert="false" name="series" update="false">
+      <column name="IDSERIE" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="contador" type="big_decimal">
+      <column name="CONTADOR" not-null="true" precision="22" scale="0"/>
+    </property>
+  </class>
+</hibernate-mapping>

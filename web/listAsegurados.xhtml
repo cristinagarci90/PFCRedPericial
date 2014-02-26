@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+            <center>
+    
+    <h:form>  
+         <p:commandButton actionListener="#{aseguradoManagedBean.listadoCompleto}" value="Ver Todos" update="idListado"/>
+  
+       <p:dataTable id="idListado" var="asegurados" value="#{aseguradoManagedBean.listado}" tableStyle="width:auto"
+                 paginator="true" rows="3"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="1,2,3,5"
+                 widgetVar="tablaAsegurado"   emptyMessage="No se encontraron asegurado" >
+           <f:facet name="header"> 
+               <h:outputText value="Search all fields:" />  
+               <p:inputText id="globalFilter" onkeyup="tablaAsegurado.filter()" style="width:150px" />
+           </f:facet>  
+      
+            
+            <p:column headerText="ID" style="width:100px" filterBy="#{asegurados.idasegurado}" > <!--sortBy="#{asegurados.idasegurado}" -->
+                <h:outputText value="#{asegurados.idasegurado}"/>
+            </p:column>
+            <p:column headerText="Nombre" style="width:100px" filterBy="#{asegurados.nombre}" >
+                <h:outputText value="#{asegurados.nombre}"/>
+            </p:column>
+            <p:column headerText="Matricula" style="width:100px" filterBy="#{asegurados.matricula}" >
+                <h:outputText value="#{asegurados.matricula}"/>
+            </p:column>
+           
+                
+                <p:column>
+                  <p:commandButton actionListener="#{aseguradoManagedBean.Modificar(asegurados)}" value="#{msg['add']}" update=":tabAsegurados"  immediate="true"/>
+                </p:column>
+        </p:dataTable>
+</h:form>  
+                
+                
+   </center>           
+    </h:body>
+</html>

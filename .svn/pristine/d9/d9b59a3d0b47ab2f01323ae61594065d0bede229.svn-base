@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.1.0.206:1521:ORCL</property>-->
+    <!--property name="hibernate.connection.url">jdbc:oracle:thin:@10.1.0.206:1522:ORCL</property-->
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <property name="hibernate.connection.username">gestionPericial</property>
+    <property name="hibernate.connection.password">gestionPericial</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+    <mapping resource="models/InfDocumentosinforme.hbm.xml"/>
+    <mapping resource="models/Estados.hbm.xml"/>
+    <mapping resource="models/Grupotaller.hbm.xml"/>
+    <mapping resource="models/Txt.hbm.xml"/>
+    <mapping resource="models/Infasegurado.hbm.xml"/>
+    <mapping resource="models/InfContrario.hbm.xml"/>
+    <mapping resource="models/TramosKm.hbm.xml"/>
+    <mapping resource="models/Usuario.hbm.xml"/>
+    <mapping resource="models/Honorarios.hbm.xml"/>
+    <mapping resource="models/Marcas.hbm.xml"/>
+    <mapping resource="models/InfFotosinforme.hbm.xml"/>
+    <mapping resource="models/InfInformeasegurado.hbm.xml"/>
+    <mapping resource="models/ZonasPerito.hbm.xml"/>
+    <mapping resource="models/Perito.hbm.xml"/>
+    <mapping resource="models/Subtxt.hbm.xml"/>
+    <mapping resource="models/Tipoinforme.hbm.xml"/>
+    <mapping resource="models/Poblacion.hbm.xml"/>
+    <mapping resource="models/Cliente.hbm.xml"/>
+    <mapping resource="models/InfInforme.hbm.xml"/>
+    <mapping resource="models/Taller.hbm.xml"/>
+    <mapping resource="models/Roles.hbm.xml"/>
+    <mapping resource="models/FotosTarifa.hbm.xml"/>
+    <mapping resource="models/Modelos.hbm.xml"/>
+    <mapping resource="models/Tipovehiculo.hbm.xml"/>
+    <mapping resource="models/Provincia.hbm.xml"/>
+    <mapping resource="models/Serie.hbm.xml"/>
+    <mapping resource="models/Tarifa.hbm.xml"/>
+    <mapping resource="models/Cobertura.hbm.xml"/>
+    <mapping resource="models/TextoAvance.hbm.xml"/>
+    <mapping resource="models/InfAvances.hbm.xml"/>
+    <mapping resource="models/ClienteTextoAvance.hbm.xml"/>
+    <mapping resource="models/InfDocinformevarios.hbm.xml"/>
+    <mapping resource="models/InfDocinfinspeccionriesgo.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

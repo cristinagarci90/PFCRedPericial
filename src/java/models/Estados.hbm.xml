@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Estados" schema="GESTIONPERICIAL" table="ESTADOS">
+    <cache usage="read-only"/>
+    <id name="idestado" type="big_decimal">
+      <column name="IDESTADO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="tipo" type="string">
+      <column length="1" name="TIPO"/>
+    </property>
+    <property name="codigo" type="string">
+      <column length="20" name="CODIGO"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column length="150" name="DESCRIPCION"/>
+    </property>
+    <property name="baja" type="string">
+      <column length="1" name="BAJA"/>
+    </property>
+    <set inverse="true" name="InfInforme">
+      <key>
+        <column name="idestado" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.InfInforme"/>
+    </set>
+  </class>
+</hibernate-mapping>

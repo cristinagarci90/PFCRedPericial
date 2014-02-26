@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+            <center>
+    <h:form id="listadoPolizas">  
+                 
+          
+    <p:dataTable id="idListado" var="informes" value="#{informeManagedBean.listado}" tableStyle="width:auto"
+                 paginator="true" rows="10"
+                 widgetVar="tablaInformes"   emptyMessage="No se encontraron informes" >
+           <f:facet name="header"> 
+               <h:outputText value="Search all fields:" />  
+               <p:inputText id="globalFilter" onkeyup="tablaInformes.filter()" style="width:150px" />
+           </f:facet>  
+      
+           
+                <p:column headerText="Informe" style="width:100px" >
+                    <h:outputText value="#{informes.numeroinforme}"/>
+                </p:column>
+               <p:column headerText="Póliza" style="width:100px"  >
+                    <h:outputText value="#{informes.poliza}"/>
+                </p:column>
+                 <p:column headerText="Fecha.Per" style="width:100px" >
+                     <h:outputText value="#{informes.fechaperitacion}"/>
+                </p:column>
+                   <p:column>
+                     <h:commandButton action="#{informeManagedBean.Modificar(informes)}" value="Asignar"/>
+                     
+                </p:column>  
+                 <p:column>
+                      <p:commandButton id="selectButton" update=":listadoPolizas:carDetail" oncomplete="carDialog.show()" icon="ui-icon-search" title="View">
+                          <f:setPropertyActionListener value="#{informes}" target="#{informeManagedBean.informeSelected}" />
+                      </p:commandButton>
+                  </p:column>
+             </p:dataTable>
+         
+        
+    <p:dialog header="Car Detail" widgetVar="carDialog" modal="true" >  
+      <p:outputPanel id="carDetail" style="text-align:center;" layout="block">
+          Informe   : <h:outputText value="#{informeManagedBean.informeSelected.numeroinforme}" style="margin-left:10px" />
+          <br/> 
+          Siniestro  : <h:outputText value="#{informeManagedBean.informeSelected.siniestro}" style="margin-left:10px" />
+      </p:outputPanel>
+    </p:dialog>
+</h:form>  
+                
+           
+   </center>           
+    </h:body>
+</html>

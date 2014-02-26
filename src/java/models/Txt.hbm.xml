@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Txt" schema="GESTIONPERICIAL" table="TXT">
+    <comment>TABLA DE TEXTOS COMUNES EN ELLA VAMOS A ALMACENAR AQUELLOS CODIGOS ASOCIADOS A LAS TABLAS QUE SOLO TIENEN DOS O TRES REGISTROS. PEJ: TIPO DE FACTURACION</comment>
+    <id name="codigo" type="big_decimal">
+      <column name="codigo" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="descripcion" type="string">
+      <column length="100" name="descripcion"/>
+    </property>
+    <set inverse="true" name="subtxts">
+      <key>
+        <column name="codigo" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.Subtxt"/>
+    </set>
+  </class>
+</hibernate-mapping>

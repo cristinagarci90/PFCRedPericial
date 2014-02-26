@@ -1,0 +1,672 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+   
+   
+    <!--h:head>
+        <title>Gestión Provincia</title>
+    </h:head>
+    <h:body-->
+     <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Modificar Informe
+	</ui:define>
+        <ui:define name="content">
+            <table width="90%">  <!--Tabla con dos celdas MENU y CONTENIDO-->
+                <tr>
+                    <td><!--MENU-->
+                        <h:form id="menuInforme" class="orden">
+                            <p:menu>  
+                               <p:submenu label="Imprimir">  
+                                   <p:menuitem value="Para Perito" actionListener="#{informeManagedBean.imprimoOrden}"  onclick="dlg1.show();lazyload();"/><!-- update="basicDialog" /-->  
+                               </p:submenu>  
+                               <!--p:submenu label="Imprimir">  
+                                   <p:menuitem value="Save" actionListener="#{menuBean.save}" update="messages" icon="ui-icon-disk" />  
+                                   <p:menuitem value="Update" actionListener="#{menuBean.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>  
+                               </p:submenu>  
+                               <p:submenu label="Non-Ajax Menuitem">  
+                                   <p:menuitem value="Delete" actionListener="#{menuBean.delete}" update="messages" ajax="false" icon="ui-icon-close"/>  
+                               </p:submenu>  
+                               <p:submenu label="Navigations">  
+                                   <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>  
+                                   <p:menuitem value="Internal" outcome="/mobile/index" icon="ui-icon-star"/>  
+                               </p:submenu-->  
+                           </p:menu>  
+                            <p:dialog id="basicDialog" header="Basic Dialog" widgetVar="dlg1" modal="true" dynamic="true" >  
+                                <ui:include src="imprimirOrden.xhtml"   /> 
+                            </p:dialog>  
+                         </h:form>
+                    </td>
+                    <td><!--CONTENIDO-->
+                        <h:form id="form" class="orden"> 
+                            <p:panel id="panel"   header="Modificar Informe ______  #{informeManagedBean.actual.numeroinforme}" style="  width: 100%;  table-layout: auto;  alignment-adjust: central; background-color: transparent; " >
+                                 <center>
+                                      
+                                               <table border="0"   width="100%" cellpadding="2px" >
+                                                 
+                                                    <tr>
+                                                                 <td align="left">Cliente Solicitante:</td>
+                                                                 <td>
+                                                                     <h:selectOneMenu id="clientesolicitante" required="true" requiredMessage="#{msg['Required_field__Customer_apllicant']}" value="#{informeManagedBean.actual.clientesolicitante}" style="width:175px" >   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="#{msg['Select_a_customer']}" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{clienteManagedBean.provvalor}"/> 
+                                                                             <p:ajax update="msgClientesolicitante" event="valueChange"/>
+                                                                    </h:selectOneMenu>
+                                                                     <p:message for="clientesolicitante" id="msgClientesolicitante" />
+                                                                 </td>
+
+                                                                 <td align="left">Cliente Informe:</td>
+                                                               <td>
+                                                                   <h:selectOneMenu  id="clientecabecerainf" required="true" requiredMessage="#{msg['Required_field__Customer_report']}" value="#{informeManagedBean.actual.clientecabecerainf}" style="width:175px">   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="#{msg['Select_a_customer']}" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{clienteManagedBean.provvalor}"/>
+                                                                             <p:ajax update="msgClientecabecerainf" event="valueChange"/>
+                                                                    </h:selectOneMenu>
+                                                                   <p:message for="clientecabecerainf" id="msgClientecabecerainf" />
+                                                                 </td>
+                                                             </tr>
+                                                     <tr>
+                                                                 <td align="left">Fecha peritación:</td>               
+                                                             
+                                                                 <td>
+                                                                   <p:calendar value="#{informeManagedBean.actual.fechaperitacion}" required="true" requiredMessage="#{msg['Required_field__Date_of_Expertise']}" id="fechaperitacion" showButtonPanel="true" navigator="true"  locale="es" mode="popup">  
+                                                                            <p:ajax event="dateSelect" update="msgFechaperitacion" />  
+                                                                     </p:calendar>
+                                                                     <p:message for="fechaperitacion" id="msgFechaperitacion" />    
+
+                                                                 </td>  
+                                                                 
+                                                              
+                                                                    <td align="left">Perito:</td>
+                                                                 <td>
+                                                                     <h:selectOneMenu required="true"  id="perito" value="#{informeManagedBean.actual.perito}" style="width:175px">   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="#{msg['Select_a_proficient']}" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{peritoManagedBean.provvalor}"/> 
+                                                                            <p:ajax update="msgPerito" event="valueChange"/>
+                                                                    </h:selectOneMenu>
+                                                                      <p:message for="perito" id="msgPerito" />
+
+                                                                 </td>
+                                                             </tr> 
+                                                   <tr>
+                                                                 <td align="left">Tipo de informe:</td>
+                                                                 <td>
+                                                                     <h:selectOneMenu required="true"  id="tipoinforme" value="#{informeManagedBean.actual.tipoinforme.idtipoinforme}" style="width:175px">   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="Tipo de informe" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{tipoinformeManagedBean.provvalor}"/> 
+                                                                              <p:ajax update="msgTipoinforme" event="valueChange"/>
+                                                                    </h:selectOneMenu>
+                                                                     <p:message for="tipoinforme" id="msgTipoinforme" />
+                                                                 </td>
+                                                                 <td align="left">Cobertura:</td>
+                                                                 <td>
+                                                                 <h:selectOneMenu  id="cobertura" required="true" value="#{informeManagedBean.actual.cobertura.idcobertura}" style="width:175px">   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="Cobertura" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{coberturasManagedBean.provvalor}"/> 
+                                                                            <p:ajax update="msgCobertura" event="valueChange"/>
+                                                                    </h:selectOneMenu>
+
+                                                                      <p:message for="cobertura" id="msgCobertura" />
+                                                                 </td>
+                                                                 
+                                                                 <td align="left"><b>Peritar a :</b></td>
+                                                                                 <td>
+                                                                                     <h:selectOneRadio  required="true" requiredMessage="Campo obligatirio - Peritar a" id="peritara" value="#{informeManagedBean.actual.peritara}" >
+                                                                                          <f:selectItem itemValue="1" itemLabel="Asegurado"/>
+                                                                                          <f:selectItem itemValue="2" itemLabel="Contrario"/>
+                                                                                             <p:ajax update="msgPeritara" event="valueChange"/>
+                                                                                      </h:selectOneRadio>
+                                                                                     <p:message for="peritara" id="msgPeritara" />
+                                                                                 </td>
+                                                               </tr>
+                                                   
+                                                   <tr>
+                                                                 <td align="left">Estados:</td>
+                                                                 <td>
+                                                                     <h:selectOneMenu id="idestado" required="true" requiredMessage="Campo obligatirio - Estado del informe" value="#{informeManagedBean.actual.idestado}" style="width:175px">   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="Seleccione un estado" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{estadoManagedBean.estadovalor}"/> 
+                                                                             <p:ajax update="msgEstado" event="valueChange"/>
+                                                                    </h:selectOneMenu>
+                                                                     <p:message for="idestado" id="msgEstado" />
+                                                                 </td>
+
+                                                                 
+                                                               </tr>
+                                                  
+                                                    <tr>
+                                                                   <td colspan="4">
+                                                                       <table>
+                                                                           <tr>
+                                                                   <td colspan="6">
+   
+                                                                       <table width="100%">
+                                                                           <tr>
+                                                                                <td align="left">#{msg['policy']}:</td>
+                                                                                 <td>
+                                                                                     <h:inputText label="#{msg['policy']}" required="true" requiredMessage="#{msg['Required_field']} - #{msg['policy']}" id="poliza" value="#{informeManagedBean.actual.poliza}">
+                                                                                         <p:ajax update="msgPoliza" event="keyup" />  
+                                                                                     </h:inputText>
+                                                                                     <p:message for="poliza" id="msgPoliza" />
+                                                                                  <p:commandButton value="Buscar" 
+                                                         update=":formPolizas:idListadoPolizas" oncomplete="dlgPolizas.show();" />
+                                                                                     
+                                                                                 </td>
+                                                                                  <td align="left">#{msg['accident']}:</td>
+                                                                                  <td>
+                                                                                     <h:inputText label="#{msg['accident']}"  required="true" requiredMessage="#{msg['Required_field']} - #{msg['accident']}" id="siniestro"  value="#{informeManagedBean.actual.siniestro}">
+                                                                                          <p:ajax update="msgSiniestro" event="keyup" />  
+                                                                                     </h:inputText>
+                                                                                      <p:message for="siniestro" id="msgSiniestro" />
+                                                                                 </td>
+
+
+                                                                                  <td>Convenio:</td>
+                                                                                  <td>
+                                                                                      <h:selectOneRadio id="convenio" required="true" requiredMessage="Campo requerido=Convenio" value="#{informeManagedBean.actual.convenio}">
+                                                                                          <f:selectItem itemValue="1" itemLabel="Si"/>
+                                                                                          <f:selectItem itemValue="2" itemLabel="No"/>
+                                                                                             <p:ajax update="msgConvenio" event="valueChange"/>
+                                                                                      </h:selectOneRadio>
+                                                                                      <p:message for="convenio" id="msgConvenio" />
+                                                                                </td>
+                                                                                <td>
+                                                                                        <h:selectOneMenu id="tipoconvenio" style="width:175px">   
+                                                                                               <f:selectItem itemLabel="CIDE" itemValue="CIDE" /> 
+                                                                                               <f:selectItem itemLabel="ASCIDE" itemValue="ASCIDE" />
+                                                                                               <f:selectItem itemLabel="CICOS" itemValue="CICOS" />
+                                                                                               <f:selectItem itemLabel="SDM" itemValue="SDM" />
+                                                                                       </h:selectOneMenu>
+
+                                                                 
+                                                                                  </td>
+                                                                               
+
+
+                                                                           </tr>
+                                                                       </table>
+                                                                   </td>
+
+                                                             </tr>
+                                          
+                                                         </table>
+                                                                   </td>
+                                                    </tr>
+                                               </table>          
+
+                                             <h:commandButton action="listInformes" value="Cancelar"/>                                            
+
+                                             <h:commandButton action="#{informeManagedBean.updateRegister}" value="Guardar"/> 
+                                             
+                                            
+      <h:panelGrid id="grid" columns="3" cellpadding="4">  
+                      
+        <p:tabView id="particion">
+            <p:ajax event="tabChange"/>
+                 <p:tab id="tab1" title="Parte">  
+                 <p:panel id="panelParte"  header="Parte" style="  width: 100%;  table-layout: auto;  alignment-adjust: central; background-color: transparent;"  >
+                    
+                  <table  width="100%" style="font-weight: bold;" border="0" cellpadding="8px" RULES="rows">
+                  
+                      <tr>
+                      <td colspan="4">
+                      <table>
+                         <tr>                                                                                                                                                         
+                    <td align="left">Solicitante de la Orden de Intervencion:</td>
+                      <td>
+                          <h:inputText  id="solicitante"  value="#{informeManagedBean.actual.solicitante}" size="100">                        
+                          </h:inputText>
+                     </td>
+                     </tr>
+                     </table>
+                     </td>
+                     </tr>
+                   <tr>
+                    <td colspan="2">
+                    <table>
+                   <tr>
+                                                        
+                   <td>Franquicia :</td>
+                   <td>
+                       <h:inputText  id="franquicia"  value="#{informeManagedBean.actual.franquicia}"> 
+                           <f:validateDoubleRange minimum="5" maximum="8" />  
+                    </h:inputText>
+                       <p:message for="franquicia" />  
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                       
+                   <td colspan="2">
+                    <table>
+                   <tr>
+                                                        
+                   <td>Compromiso : </td>
+                   <td>
+                   <h:selectOneRadio id="compromiso" required="true" requiredMessage="Campo requerido=Compromiso" value="#{informeManagedBean.actual.compromiso}">
+                   <f:selectItems value="#{informeManagedBean.compromisoInforme}" />
+                   <p:ajax update="msgCompromiso" event="valueChange"/>
+                   </h:selectOneRadio>
+                       <p:message for="compromiso" id="msgCompromiso" />
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                </tr>
+               
+                <tr>
+                    <td colspan="4">
+                    <table>
+                   <tr>
+                                                        
+                   <td>Comentarios franquicia:</td>
+                   <td>
+                       <p:inputTextarea rows="3" cols="50"  maxlength="30" autoResize="false" value="#{informeManagedBean.actual.comentariofranquicia}"/>  
+
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                       
+                   
+                </tr>
+                      
+                      
+                  </table>
+                 </p:panel>
+                 </p:tab>
+                       <p:tab id="tab2" title="Siniestro">  
+                      <p:panel id="panelSiniestro"  header="Siniestro" style="  width: 100%;  table-layout: auto;  alignment-adjust: central; background-color: transparent;"  >
+                    
+                  <table  width="100%" style="font-weight: bold;" border="0" cellpadding="8px" RULES="rows">
+                 
+                      
+                      <tr>
+                                                                 <td align="left">Fecha del Siniestro:</td>
+                                                                 <td>
+                                                                     <p:calendar value="#{informeManagedBean.actual.siniestrofecha}"  id="siniestrofecha" showButtonPanel="true" navigator="true"  locale="es" mode="popup">  
+                                                                       <p:ajax update="msgFechasiniestro" event="dateSelect" />  
+                                                                     </p:calendar>
+                                                                     <p:message for="siniestrofecha" id="msgFechasiniestro" />    
+
+                                                                 </td>  
+                                                                    <td align="left">Hora del Siniestro:</td>
+                                                                 <td>
+                                                                     <h:inputText id="siniestrohora" value="#{informeManagedBean.actual.siniestrohora}"/>
+                                                                    <p:message for="siniestrohora" id="msgSiniestroHora" />
+                                                                 </td>
+                                                             </tr> 
+                    
+                      
+                                                               
+                                                                <tr>
+                                                                 <td align="left">Via Siniestro:
+                                                                     <p:inputText id="viasiniestro" value="#{informeManagedBean.actual.siniestrovia}"/>
+                                                                 </td>
+                                                                 <td align="left">Siniestro Provincia/Poblacion:</td>
+                                                                 <td>
+                                                                   <h:selectOneMenu  id="siniestroprovincia" required="true"  requiredMessage="#{msg['Required_field']} - #{msg['Select_a_province']}"  value="#{informeManagedBean.actual.siniestroprovincia}" style="width:175px">   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="#{msg['Select_a_province']}" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                                                            <f:ajax execute="@this" render="siniestropoblacion"/> 
+                                                                            <p:ajax update="msgSiniestroprovincia" event="valueChange"/>  
+                                                                    </h:selectOneMenu>
+                                                                      <p:message for="siniestroprovincia" id="msgSiniestroprovincia" />
+                                                                 </td>
+                                                                
+                                                                <td> 
+                                                                   <h:selectOneMenu  id="siniestropoblacion" required="true" requiredMessage="#{msg['Required_field']} - Poblacion" value="#{informeManagedBean.actual.siniestropoblacion}" style="width:175px">   
+                                                                            <f:selectItem 
+                                                                                     itemLabel="#{msg['Select_a_province']}" 
+                                                                                     itemValue="" /> 
+                                                                            <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(informeManagedBean.actual.siniestroprovincia)}"/> 
+                                                                              <p:ajax update="msgSiniestropoblacion" event="valueChange"/>
+                                                                    </h:selectOneMenu>
+                                                                    <p:message for="siniestropoblacion" id="msgSiniestropoblacion" />
+
+
+                                                                 </td>
+
+                                                               </tr>
+                      
+                      
+                      
+                                                                <tr>
+                    <td colspan="4">
+                    <table>
+                   <tr>
+                                                        
+                   <td>Version del siniestro:</td>
+                   <td>
+                       <p:inputTextarea rows="3" cols="50"  maxlength="30" autoResize="false" value="#{informeManagedBean.actual.siniestoversion}"/>  
+
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                       
+                   
+                </tr>
+                      
+                      
+                <tr>
+                    <td colspan="4">
+                    <table>
+                   <tr>
+                                                        
+                   <td>Comentarios:</td>
+                   <td>
+                       <p:inputTextarea rows="3" cols="50"  maxlength="30" autoResize="false" value="#{informeManagedBean.actual.siniestrocomentarios}"/>  
+
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                       
+                   
+                </tr>
+                      
+                      
+                                                              
+                                                      </table>
+                          
+                 </p:panel>
+                 </p:tab>
+                     
+                     
+                     
+                     
+                     
+                  <p:tab id="tab3" title="Daños">  
+                      <p:panel id="panelDanyos"  header="Daños" style="  width: 100%;  table-layout: auto;  alignment-adjust: central; background-color: transparent;"  >
+                    
+                  <table  width="100%" style="font-weight: bold;" border="0" cellpadding="8px" RULES="rows">
+                 
+                   <tr>
+                    <td colspan="4">
+                    <table>
+                   <tr>
+                                                        
+                   <td >Daños del vehiculo asegurado:</td>
+                   <td >
+                       <p:inputTextarea rows="3" cols="50"  maxlength="30" autoResize="false" value="#{informeManagedBean.actual.danyosasegurado}"/>  
+
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                       
+                   
+                </tr>  
+                      
+                      
+                      <tr>
+                    <td colspan="4">
+                    <table>
+                   <tr>
+                                                        
+                   <td >Daños del vehiculo contrario:</td>
+                   <td >
+                       <p:inputTextarea rows="3" cols="50"  maxlength="30" autoResize="false" value="#{informeManagedBean.actual.danyoscontrario}"/>  
+
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                       
+                   
+                </tr>
+                
+                      
+                <tr>
+                    <td colspan="4">
+                    <table>
+                   <tr>
+                                                        
+                   <td>Accesorios:</td>
+                   <td>
+                       <p:inputTextarea rows="3" cols="50"  maxlength="30" autoResize="false" value="#{informeManagedBean.actual.danyosaccesorios}"/>  
+
+                   </td>
+                   </tr>
+                   </table>
+                  </td>
+                       
+                   
+                </tr>
+                
+                </table>
+                          
+                 </p:panel>
+                 </p:tab>
+                     
+                     
+                     
+                  <p:tab id="tab4" title="Otros">  
+                      <p:panel id="panelOtros"  header="Otros" style="  width: 100%;  table-layout: auto;  alignment-adjust: central; background-color: transparent;"  >
+                    
+                  <table  width="100%" style="font-weight: bold;" border="0" cellpadding="8px" RULES="rows">
+                 
+                   <tr>
+                                                                  <td colspan="4">
+                                                                       <table width="100%">
+                                                                           <tr>
+                                                                               
+                                                                                <td>Intervino la policia :</td>
+                                                                                  <td>
+                                                                                      <h:selectOneRadio id="intervinopolicia" required="true" requiredMessage="Campo obligatorio-Intervino la policía" value="#{informeManagedBean.actual.intervinopolicia}">
+                                                                                          <f:selectItem itemValue="1" itemLabel="Si"/>
+                                                                                          <f:selectItem itemValue="2" itemLabel="No"/>
+                                                                                           <p:ajax update="msgIntervinopolicia" event="valueChange"/>
+                                                                                      </h:selectOneRadio>
+                                                                                         <p:message for="intervinopolicia" id="msgIntervinopolicia" />
+                                                                                  </td>
+                                                                                   <td>Culpabilidad :</td>
+                                                                                  <td>
+                                                                                       <h:selectOneRadio id="culpabilidad" required="true" requiredMessage="Campo obligatorio-Culpabilidad" value="#{informeManagedBean.actual.culpabilidad}">
+                                                                                          <f:selectItem itemValue="1" itemLabel="Si"/>
+                                                                                          <f:selectItem itemValue="2" itemLabel="No"/>
+                                                                                          <p:ajax update="msgCulpabilidad" event="valueChange"/>
+                                                                                       </h:selectOneRadio>
+                                                                                        <p:message for="culpabilidad" id="msgCulpabilidad" />
+                                                                                  </td>
+
+
+                                                                           </tr>
+                                                                       </table>
+                                                                   </td>
+
+                                                             </tr>
+                
+                </table>
+                          
+                 </p:panel>
+                 </p:tab>   
+                 
+                     
+                  
+                 </p:tabView>
+      </h:panelGrid>
+                                             
+       
+                                 </center>
+       </p:panel>
+             <p:messages id="messages" />    
+          </h:form>       
+                 
+                 
+                 
+                 
+                
+                 
+                 
+                 
+                
+                 
+         
+                        
+                        
+                           <table >
+                                      <tr>
+                                          <td>
+                                                  <p:commandButton id="btnAsegurado" value="Asegurado" type="button"  />  
+                                                   <p:overlayPanel id="informePanelAseg" for="btnAsegurado" hideEffect="fade">  
+                                                      <!--ui:include src="altaAseguradoPanel.xhtml" /-->
+                                                      <p:tabView id="tabAsegurados" cache="false" orientation="left">
+                                                          <p:tab id="tab1Asegurado" title="Datos" > 
+                                                              <h:form id="aseg" >
+                                                                <ui:include src="altaAseguradoPanel.xhtml" />
+                                                              </h:form>
+                                                          </p:tab>
+                                                          <p:tab id="tab2Asegurado" title="Listado">  
+                                                               <ui:include src="listAsegurados.xhtml" />
+                                                          </p:tab>
+                                                      </p:tabView>
+                                                   </p:overlayPanel> 
+                                                   <p:commandButton id="btnContrarios" value="Contrarios" type="button"  />  
+                                                   <p:overlayPanel id="informePanelCont" for="btnContrarios" hideEffect="fade">  
+                                                      <!--ui:include src="altaAseguradoPanel.xhtml" /-->
+                                                      <p:tabView id="tabContrarios" cache="false" orientation="left"><!-- dynamic="true"-->
+                                                          <p:tab id="tab1Contrarios" title="Contrarios"  > 
+
+                                                                <ui:include src="altaContrario.xhtml" />
+                                                           </p:tab>
+                                                           <p:tab id="tab1ContrariosList" title="Listado"  > 
+
+                                                                <ui:include src="listadoContrarios.xhtml" />
+                                                           </p:tab>
+                                                      </p:tabView>
+                                                   </p:overlayPanel> 
+                                                  <p:commandButton id="btnAvances" value="Avances" type="button" />  
+                                                   <p:overlayPanel id="informePanelAvance" for="btnAvances" hideEffect="fade" >
+                                                       
+                                                              <h:form id="avance">
+                                                                  <ui:include src="avancesInforme.xhtml" />
+                                                              </h:form>
+                                                       
+                                                   </p:overlayPanel> 
+                                                  <p:commandButton id="btnTaller" value="Taller" type="button"  />  
+                                                   <p:overlayPanel id="informePanelTall" for="btnTaller" hideEffect="fade">  
+                                                       <p:tabView id="tabViewTaller" cache="false">
+                                                          <p:tab id="tab1Taller" title="Datos"> 
+                                                                <ui:include src="altaTaller.xhtml" />
+                                                          </p:tab>
+                                                          <p:tab id="tab2Taller" title="Listado"> 
+                                                                <ui:include src="listTalleres.xhtml" />
+                                                          </p:tab>
+                                                      </p:tabView>
+
+
+                                                   </p:overlayPanel> 
+                                                  <p:commandButton id="btnFotos" value="Fotos" type="button"  />  
+                                                   <p:overlayPanel id="informePanelFotos" for="btnFotos" hideEffect="fade">  
+                                                       <h:form id="fotos" >
+                                                            <ui:include src="fotosInforme.xhtml" />
+                                                       </h:form>
+                                                  
+                                                   </p:overlayPanel> 
+                                                  
+                                                     <p:commandButton id="btnDocumentos" value="Documentos" type="button"  />  
+                                                   <p:overlayPanel id="informePanelDocus" for="btnDocumentos" hideEffect="fade">  
+                                                       <p:tabView id="tabViewDocumentos" cache="false">
+                                                          <p:tab id="tab1Documentos" title="Datos"> 
+                                                               <p:commandButton rendered="#{informeManagedBean.actual.infDocinformevarios.idinforme > 0}" id="btnInformeVarios" value="Informe Varios" type="button"  onclick="dlgIV.show();lazyload();" style=" color: red; " />
+                                                               <p:commandButton rendered="#{informeManagedBean.actual.infDocinformevarios.idinforme eq null}" id="ffff" value="Informe Varios" type="button"  onclick="dlgIV.show();lazyload();"  />
+                                                               
+                                                               
+                                                               <p:commandButton id="btnInspRiesgo" value="Inspección de Riesgo" type="button" onclick=""/>
+                                                               <br/><br/><br/>
+                                                                 
+                                                               <p:commandButton id="btnSiniestroTotal" value="SiniestroTotal" type="button"  onclick="dlgST.show();lazyload();"/>
+                                                               
+                                                               <p:commandButton id="btnIVerSiniestro" value="Verificación de Siniestro" type="button"  onclick="dlgVS.show();lazyload();"/>
+                                                          </p:tab>
+                                                          <p:tab id="tab2Documentos" title="Cia"> 
+                                                                <ui:include src="" />
+                                                          </p:tab>
+                                                      </p:tabView>
+
+
+                                                   </p:overlayPanel> 
+                                                      <p:dialog id="basicDialogIV" header="Informe Varios" widgetVar="dlgIV" dynamic="true" >  <!--modal="true" -->
+                                                        <ui:include src="informeVarios.xhtml"   /> 
+                                                    </p:dialog>  
+                                          </td>
+                                      </tr>
+
+                                  </table>
+
+
+    
+                    </td><!--FIN DE TD DE CONTENIDO-->
+                </tr>
+            </table>
+
+
+
+                               <!--ASEGURADO-->
+
+
+                               <!--FIN DE ASEGURADO-->
+
+<h:form id="formPolizas">         
+            <p:dialog id="basicDialog" header="Polizas coincidentes" widgetVar="dlgPolizas" modal="true" dynamic="true" >  
+                
+          <!--LISTADO DE POLIZAS PARA ASIGNACION-->
+          <p:dataTable id="idListadoPolizas" var="informes" value="#{informeManagedBean.listadoPolizaModificacion}"
+                                                        tableStyle="width:auto"
+                 paginator="true" rows="10"
+                 widgetVar="tablaInformes"   emptyMessage="No se encontraron informes" >
+                 <p:column headerText="Póliza" style="width:100px"  >
+                    <h:outputText value="#{informes.poliza}"/>
+                </p:column>
+                 <p:column headerText="Fecha.Per" style="width:100px" >
+                     <h:outputText value="#{informes.fechaperitacion}"/>
+                </p:column>
+                   <p:column>
+                     <h:commandButton action="#{informeManagedBean.Asignar(informes,'modificarInforme')}" value="Asignar"/>
+                </p:column>  
+                 <!--p:column>
+                      <p:commandButton id="selectButton" update=":listadoPolizas" oncomplete="carDialog.show()" icon="ui-icon-search" title="View">
+                          <f:setPropertyActionListener value="#{informes}" target="#{informeManagedBean.informeSelected}" />
+                      </p:commandButton>
+                  </p:column-->
+             </p:dataTable>
+         
+           
+                  
+          <!--p:dialog header="Detalle informe" widgetVar="carDialog">  
+            <p:outputPanel id="carDetail" style="text-align:center;" layout="block">
+                Informe   : 
+                <br/> 
+                Siniestro  : <h:outputText value="#{informeManagedBean.informeSelected.siniestro}" style="margin-left:10px" />
+            </p:outputPanel>
+          </p:dialog-->
+   <!--FINNNNN  DE   LISTADO DE POLIZAS PARA ASIGNACION-->                                                                                                                                  
+      </p:dialog>  
+    
+     </h:form>    
+                                
+        </ui:define>
+
+</ui:composition>
+    <!--/h:body-->
+</html>

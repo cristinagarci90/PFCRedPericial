@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Serie" schema="GESTIONPERICIAL" table="SERIE">
+    <comment>SERIES DE FACTURACION ASOCIADOS A LOS CLIENTES POR EJEMPLO: 1 - PTR - 2010 - 2 - "CONTADOR DE SERIE PARA NACIONAL SUIZA"</comment>
+    <id name="idserie" type="big_decimal">
+      <column name="IDSERIE" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="codigo" type="string">
+      <column length="50" name="CODIGO"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column length="200" name="DESCRIPCION"/>
+    </property>
+    <property name="anyo" type="big_decimal">
+      <column name="ANYO" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="contador" type="big_decimal">
+      <column name="CONTADOR" precision="22" scale="0"/>
+    </property>
+    <property name="baja" type="string">
+      <column length="1" name="BAJA"/>
+    </property>
+    <set inverse="true" name="clientes">
+      <key>
+        <column name="IDSERIE" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.Cliente"/>
+    </set>
+  </class>
+</hibernate-mapping>

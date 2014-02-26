@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+            <center>
+    
+    <h:form>  
+           <p:commandButton id="modalDialogButton" value="Modal" onclick="dlg2.show();" type="button"/>
+              <p:dialog id="modalDialog" header="Modal Dialog" widgetVar="dlg2" modal="true">  
+                    <h:panelGrid columns="6" style="margin-bottom:10px" cellpadding="5">
+                         <h:selectOneMenu  id="idprovincia" style="width:175px" value="#{tallerManagedBean.actual.idprovincia}">   
+                                  <f:selectItem 
+                                           itemLabel="#{msg['Select_a_province']}" 
+                                           itemValue="" /> 
+                                  <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                  <f:ajax execute="@this" render="idpoblacion"/> 
+                          </h:selectOneMenu>
+                          <h:selectOneMenu  id="idpoblacion" value="#{tallerManagedBean.actual.idpoblacion}" style="width:175px">   
+                                  <f:selectItem 
+                                           itemLabel="#{msg['Select_a_province']}" 
+                                           itemValue="" /> 
+                                  <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(tallerManagedBean.actual.idprovincia)}"/> 
+
+                          </h:selectOneMenu>
+                        <p:commandButton actionListener="#{tallerManagedBean.listPorPobProv}" value="Filtrar" update="idListado"/>
+
+                     </h:panelGrid>
+          
+       <p:dataTable id="idListado" var="talleres" value="#{tallerManagedBean.listado}" tableStyle="width:auto"
+                 paginator="true" rows="3"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="1,2,3,5"
+                 widgetVar="tablaTaller"   emptyMessage="No se encontraron taller" >
+             
+           <f:facet name="header"> 
+                  <p:commandButton actionListener="#{tallerManagedBean.listTodos}" value="Ver Todos" update="idListado"/>
+             
+                 <p:inputText id="globalFilter" onkeyup="tablaTaller.filter()" style="width:150px" />
+           </f:facet>  
+      
+            
+            <p:column headerText="ID" style="width:100px" sortBy="#{talleres.idtaller}" filterBy="#{talleres.idtaller}" >
+                <h:outputText value="#{talleres.idtaller}"/>
+            </p:column>
+            <p:column headerText="Nombre" style="width:100px" sortBy="#{talleres.nombre}" filterBy="#{talleres.nombre}" >
+                <h:outputText value="#{talleres.nombre}"/>
+            </p:column>
+            <p:column headerText="Cif" style="width:100px" sortBy="#{talleres.cif}" filterBy="#{talleres.cif}" >
+                <h:outputText value="#{talleres.cif}"/>
+            </p:column>
+         
+           
+           
+          
+           
+                
+                <!--p:column>
+                  <h:commandButton action="#{tallerManagedBean.Modificar(talleres)}" value="#{msg['add']}"/>
+                </p:column-->
+             </p:dataTable>
+                  </p:dialog>  
+</h:form>  
+                
+                
+   </center>           
+    </h:body>
+</html>

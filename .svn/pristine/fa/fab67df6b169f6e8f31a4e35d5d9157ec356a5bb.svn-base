@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Taller" schema="GESTIONPERICIAL" table="TALLER">
+    <id name="idtaller" type="big_decimal">
+      <column name="IDTALLER" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <version name="v" column="v" unsaved-value="undefined" type="int"/> 
+    <many-to-one class="models.Grupotaller" fetch="select" name="grupotaller">
+      <column name="IDGRUPOTALLER" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column length="150" name="NOMBRE"/>
+    </property>
+    <property name="denominacion" type="string">
+      <column length="150" name="DENOMINACION"/>
+    </property>
+    <property name="cif" type="string">
+      <column length="10" name="CIF"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="200" name="DIRECCION"/>
+    </property>
+    <property name="cp" type="big_decimal">
+      <column name="CP" precision="22" scale="0"/>
+    </property>
+    <property name="tfno1" type="string">
+      <column length="10" name="TFNO1"/>
+    </property>
+    <property name="tfno2" type="string">
+      <column length="10" name="TFNO2"/>
+    </property>
+    <property name="fax" type="string">
+      <column length="10" name="FAX"/>
+    </property>
+    <property name="email" type="string">
+      <column length="20" name="EMAIL"/>
+    </property>
+    <property name="cuenta" type="string">
+      <column length="20" name="CUENTA"/>
+    </property>
+    <property name="avisos" type="string">
+      <column length="1" name="AVISOS"/>
+    </property>
+    <!--<property name="tipotaller" type="big_decimal">
+      <column name="TIPOTALLER" precision="22" scale="0"/>
+    </property>-->
+    <property name="distanciaGabinete" type="big_decimal">
+      <column name="DISTANCIA_GABINETE" precision="22" scale="0"/>
+    </property>
+    <property name="precioHora" type="big_decimal">
+      <column name="PRECIO_HORA" precision="22" scale="0"/>
+    </property>
+    <property name="fechaAlta" type="date">
+      <column length="7" name="FECHA_ALTA"/>
+    </property>
+    <property name="idpoblacion" type="string">
+      <column length="4" name="IDPOBLACION" not-null="true"/>
+    </property>
+    <property name="idprovincia" type="string">
+      <column length="2" name="IDPROVINCIA" not-null="true"/>
+    </property>
+    <property name="baja" type="string">
+      <column length="1" name="BAJA"/>
+    </property>
+  </class>
+</hibernate-mapping>

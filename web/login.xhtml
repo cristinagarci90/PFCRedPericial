@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Gestion Pericial  -  Validación</title>
+             <link rel="stylesheet" type="text/css" href="css/style.css"/>              
+    </h:head>
+    <h:body>
+        <h:form>
+             
+             <table width="100%" border="0">
+            <tr>
+                <td> <img src="./img/Logo.png" /><br /><br /><br /></td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <table>
+                        <tr><td>&nbsp;</td></tr>
+                        <tr>
+
+                            <td>
+                                
+                                <table width="298" height="171" border="0" align="center" cellpadding="0" cellspacing="0" background="img/fondoTbLogin.png">
+                                    <tr><td><br /></td></tr>
+                                   <!---->
+                                      <tr align="center">
+                                        <td  colspan="4" align="right"><span class="txt2">
+                                                <strong><h:outputText value="#{msg['user']}" /> : </strong></span></td>
+                                        <td colspan="4" align="left">
+                                             <div align="center">
+                                                 <p:inputText  value="#{Login.nombreUsu}" size="10" />
+                                             </div>
+                                        </td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <td  colspan="4" align="right"><span class="txt2"> 
+                                                <strong><h:outputText value="#{msg['password']}" /> : </strong></span></td>
+                                        <td colspan="4" align="left">
+                                            <div align="center">
+                                              <p:password id="login" value="#{Login.password}" feedback="false" size="10"/>  
+                                               
+                                            </div> 
+                                            </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8">
+
+                                            <div align="center">
+                                                 <h:commandButton value="#{msg['enter']}"  action="#{Login.submit()}"/>
+                                           </div>
+                                        </td>
+
+                                    </tr>
+                                 
+                                    
+                                    <tr><td colspan="8"><br /></td></tr>
+                                </table>
+
+
+                            </td>
+
+                            <td>
+                                <img src="./img/llaves.png" width="91" height="128" />
+                            </td>
+
+
+
+
+                        </tr>
+                            </table>
+                </td>
+            </tr>
+        </table> 
+         
+        <div id="promo" >
+            <div class="wrap">	
+
+
+
+                <div id="footer">
+                    <a title="Red Pericial">Red Pericial</a>
+                </div>
+            </div>
+        </div>
+            
+       </h:form>
+    </h:body>
+
+</html>
+
+

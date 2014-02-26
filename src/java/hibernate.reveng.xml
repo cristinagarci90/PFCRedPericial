@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-schema="GESTIONPERICIAL"/>
+  <table-filter match-name="MARCAS"/>
+  <table-filter match-name="TIPOVEHICULO"/>
+  <table-filter match-name="PROVINCIA"/>
+  <table-filter match-name="INF_INFORMEASEGURADO"/>
+  <table-filter match-name="MODELOS"/>
+  <table-filter match-name="COBERTURA"/>
+  <table-filter match-name="TXT"/>
+  <table-filter match-name="INF_INFORME"/>
+  <table-filter match-name="INFASEGURADO"/>
+   <table-filter match-name="INF_CONTRARIO"/>
+  <table-filter match-name="ROLES"/>
+  <table-filter match-name="SERIE"/>
+  <table-filter match-name="TARIFA"/>
+  <table-filter match-name="ESTADOS"/>
+  <table-filter match-name="TRAMOS_KM"/>
+  <table-filter match-name="FOTOS_TARIFA"/>
+  <table-filter match-name="INF_FOTOSINFORME"/>
+  <table-filter match-name="USUARIO"/>
+  <table-filter match-name="TIPOINFORME"/>
+  <table-filter match-name="HONORARIOS"/>
+  <table-filter match-name="GRUPOTALLER"/>
+  <table-filter match-name="CLIENTE"/>
+  <table-filter match-name="SUBTXT"/>
+  <table-filter match-name="ZONAS_PERITO"/>
+  <table-filter match-name="POBLACION"/>
+  <table-filter match-name="TALLER"/>
+  <table-filter match-name="PERITO"/>
+  <table-filter match-name="INF_DOCUMENTOSINFORME"/>
+  <table-filter match-name="INF_AVANCES"/>
+  <table-filter match-name="CLIENTE_TEXTO_AVANCE"/>
+  <table-filter match-name="TEXTO_AVANCE"/>
+   <table-filter match-name="INF_DOCINFORMEVARIOS"/>
+   <table-filter match-name="INF_DOCINFINSPECCIONRIESGO"/>
+</hibernate-reverse-engineering>

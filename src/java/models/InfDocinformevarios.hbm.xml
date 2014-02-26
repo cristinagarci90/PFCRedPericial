@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-nov-2013 12:41:04 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="models.InfDocinformevarios" table="INF_DOCINFORMEVARIOS" schema="GESTIONPERICIAL">
+        <id name="idinforme" type="big_decimal">
+            <column name="IDINFORME" precision="22" scale="0" />
+            <generator class="foreign">
+                <param name="property">infInforme</param>
+            </generator>
+        </id>
+        <one-to-one name="infInforme" class="models.InfInforme" constrained="true"></one-to-one>
+        <property name="texto" type="string">
+            <column name="TEXTO" length="500" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="OBSERVACIONES" length="300" />
+        </property>
+          <property name="fecha" type="date">
+          <column length="7" name="FECHA"/>
+        </property>
+      
+    </class>
+</hibernate-mapping>

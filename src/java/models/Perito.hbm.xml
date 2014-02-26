@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-mar-2013 13:39:20 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="models.Perito" table="PERITO" schema="GESTIONPERICIAL">
+        <id name="idperito" type="big_decimal">
+            <column name="IDPERITO" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="perito" type="string">
+            <column name="PERITO" length="150" />
+        </property>
+        <property name="codigoPostal" type="string">
+            <column name="CODIGO_POSTAL" length="5" />
+        </property>
+        <property name="telefono1" type="string">
+            <column name="TELEFONO1" length="15" />
+        </property>
+        <property name="telefono2" type="string">
+            <column name="TELEFONO2" length="15" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="60" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="COMENTARIO" length="512" />
+        </property>
+        <property name="nif" type="string">
+            <column name="NIF" length="20" />
+        </property>
+        <property name="irpf" type="big_decimal">
+            <column name="IRPF" precision="22" scale="0" />
+        </property>
+        <property name="iva" type="big_decimal">
+            <column name="IVA" precision="22" scale="0" />
+        </property>
+        <property name="resultante" type="big_decimal">
+            <column name="RESULTANTE" precision="22" scale="0" />
+        </property>
+        <property name="fijo" type="big_decimal">
+            <column name="FIJO" precision="22" scale="0" />
+        </property>
+        <property name="precioKm" type="big_decimal">
+            <column name="PRECIO_KM" precision="22" scale="0" />
+        </property>
+        <property name="cochePropio" type="string">
+            <column name="COCHE_PROPIO" length="1" />
+        </property>
+        <property name="fotos" type="string">
+            <column name="FOTOS" length="1" />
+        </property>
+        <property name="fechaAlta" type="date">
+            <column name="FECHA_ALTA" length="7" />
+        </property>
+        <property name="baja" type="string">
+            <column name="BAJA" length="1" />
+        </property>
+        <property name="idpoblacion" type="string">
+            <column name="IDPOBLACION" length="4" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

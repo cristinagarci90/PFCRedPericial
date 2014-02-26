@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html">
+
+	
+    <ui:composition>
+     <!--<div class="menu">-->
+     <form>  
+        <p:menubar>
+        
+        <p:submenu label="Informes" icon="ui-icon-pencil">
+            <p:menuitem value="Nuevo" url="#{informeManagedBean.Nuevo()}" icon="ui-icon-arrowreturnthick-1-e" />
+            <p:menuitem value="ListadoInformes" url="listInformes.xhtml" icon="ui-icon-arrowreturnthick-1-e" />
+        </p:submenu>
+
+        
+        <p:submenu label="Maestros" icon="ui-icon-gear">
+            <p:submenu label="Menu Clientes" icon="ui-icon-refresh">
+                <p:menuitem value="Clientes" url="MClientes.xhtml"/>
+                <p:menuitem value="Alta Cliente" url="#{clienteManagedBean.Nuevo()}" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu>
+            
+            <p:submenu label="Menu Talleres" icon="ui-icon-refresh">
+                <p:menuitem value="Talleres" url="MTalleres.xhtml"/>
+                <p:menuitem value="Alta Taller" url="#{tallerManagedBean.Nuevo()}" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu>
+        
+            <p:submenu label="Menu Peritos" icon="ui-icon-refresh">
+                <p:menuitem value="Peritos" url="MPeritos.xhtml"/>
+                <p:menuitem value="Alta Perito" url="#{peritoManagedBean.Nuevo()}" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu>
+            
+            <p:submenu label="Menu Estados" icon="ui-icon-refresh">
+                <p:menuitem value="Estados" url="MEstados.xhtml"/>
+                <p:menuitem value="Alta Estado" url="#{estadosManagedBean.Nuevo()}" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu>
+            
+            <!--p:submenu label="Menu Series" icon="ui-icon-refresh">
+                <p:menuitem value="Series" url="MSeries.xhtml"/>
+                <p:menuitem value="Alta Serie" url="ASerie.xhtml" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu>
+            
+            
+            <p:submenu label="Menu Tarifas" icon="ui-icon-refresh">
+                <p:menuitem value="Tarifas" url="MTarifas.xhtml"/>
+                <p:menuitem value="Alta Tarifa" url="ATarifa.xhtml" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu-->
+            
+            
+            
+            <!--<p:submenu label="Menu Marcas" icon="ui-icon-refresh">
+                <p:menuitem value="Marcas" url="MMarcas.xhtml"/>
+                <p:menuitem value="Alta Marca" url="AMarca.xhtml" icon="ui-icon-arrowrefresh-1-w"/>
+            </p:submenu>-->
+        </p:submenu>
+
+            <p:menuitem value="Cerrar Sesión" url="#" icon="ui-icon-close" style="position: absolute; float: right; right: 0px; padding-right: 5px;" />
+
+        
+    </p:menubar>
+
+     
+     
+     
+            
+     
+       
+     
+     
+     
+     
+     
+	<!--<ul>
+		<li><a href="#">Inicio Administracion</a></li>
+		<li><a href="#">Informes</a>
+		<ul><span></span>
+			<li><a href="altaInforme.xhtml">NuevoOLD</a></li>
+                        <li><a href="#{informeManagedBean.Nuevo()}">Nuevo</a></li>
+			<li><a href="#">Buscar</a></li>
+			<li><a href="listInformes.xhtml">Listado Informes</a></li>
+		</ul>
+		</li>
+		<li><a href="#">Minutas</a>
+		<ul><span></span>
+			<li><a href="#">Buscar</a></li>
+			<li><a href="#"></a></li>
+		</ul></li>
+		<li><a href="#">Maestros</a>
+		<ul><span></span>
+			<li><a href="MClientes.xhtml">Clientes</a></li>
+			<li><a href="MTalleres.xhtml">Talleres</a></li>
+                        <li><a href="MPeritos.xhtml">Peritos</a></li>
+			<li><a href="MEstados.xhtml">Estados</a></li>
+			<li><a href="MSeries.xhtml">Series</a></li>
+                        <li><a href="MTarifas.xhtml">Tarifas</a></li>
+                        <li><a href="MMarcas.xhtml">Vehiculos</a></li>
+		</ul>
+		</li>
+		<li><a href="#">Cerrar</a></li>
+		<li><a href="#"></a></li>
+	</ul>-->
+	<!--</div>-->
+         </form>
+    </ui:composition>
+   
+</html>
+

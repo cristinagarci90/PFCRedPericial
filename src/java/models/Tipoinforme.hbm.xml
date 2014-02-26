@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Tipoinforme" schema="GESTIONPERICIAL" table="TIPOINFORME">
+    <id name="idtipoinforme" type="big_decimal">
+      <column name="IDTIPOINFORME" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="descripcion" type="string">
+      <column length="200" name="DESCRIPCION" not-null="true"/>
+    </property>
+    <set inverse="true" name="infInformes">
+      <key>
+        <column name="TIPOINFORME" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.InfInforme"/>
+    </set>
+  </class>
+</hibernate-mapping>

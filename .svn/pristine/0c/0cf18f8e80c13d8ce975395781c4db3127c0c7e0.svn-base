@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-sep-2013 14:08:23 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="modelsMaestros.Series" schema="MAESTROS" table="SERIES">
+    <id name="idserie" type="big_decimal">
+      <column name="IDSERIE" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="codigo" type="string">
+      <column length="10" name="CODIGO">
+        <comment>POR EJEMPLO PTR</comment>
+      </column>
+    </property>
+    <property name="descripcion" type="string">
+      <column length="60" name="DESCRIPCION">
+        <comment>DESCRIPCION DE LA SERIE</comment>
+      </column>
+    </property>
+    <set inverse="true" name="contadors">
+      <key>
+        <column name="IDSERIE" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="modelsMaestros.Contador"/>
+    </set>
+  </class>
+</hibernate-mapping>

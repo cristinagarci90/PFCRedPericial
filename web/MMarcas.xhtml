@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Maestro de Marcas y Modelos
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+    <h:form>  
+            <p:growl id="messages" showDetail="true"/>
+            <p:dataTable id="marcas" var="item" value="#{marcaManagedBean.listadoM}" tableStyle="width:auto"
+                 paginator="true" rows="3"
+                 paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                 rowsPerPageTemplate="1,2,3,5" widgetVar="marcas" editable="true" emptyMessage="No se encontraron marcas">
+                
+           <p:ajax event="rowEdit" listener="#{marca.onEdit}" update="@this"/>       
+        
+           
+           <f:facet name="header"> 
+               <h:outputText value="Search all fields:" />  
+               <p:inputText id="globalFilter" onkeyup="marcas.filter()" style="width:150px" />
+           </f:facet>  
+           <p:column>
+               <p:rowToggler/>
+           </p:column>
+           <p:column headerText="Codigo" style="width:100px" sortBy="#{item.idmarca}" filterBy="#{item.idmarca}" >
+                   <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.idmarca}"/>
+                    </f:facet>
+                        
+                    <f:facet name="input">
+                        <h:inputText value="#{item.idmarca}" style="width:100%"/>
+                    </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                
+               <p:column headerText="Marca" style="width:100px" sortBy="#{item.marca}" filterBy="#{item.marca}">
+                  <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{item.marca}"/>
+                    </f:facet>
+                        
+                    <f:facet name="input">
+                        <h:inputText value="#{item.marca}" style="width:100%"/>
+                    </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                
+                
+           <p:rowExpansion>
+             
+               <h:panelGrid id="display" columns="2" cellpadding="4" style="width:300px;" styleClass="ui-widget-content grid"> 
+                  <h:dataTable value="#{marcaManagedBean.listadoM}" var="dato">
+      <h:column>
+         <f:facet name="header">
+            <h:outputText value="valor"></h:outputText>
+         </f:facet>
+          <h:outputText value="#{dato.idmarca}"></h:outputText>
+      </h:column>
+      <h:column>
+         <f:facet name="header">
+            <h:outputText value="nombre"></h:outputText>
+         </f:facet>
+          <h:outputText value="#{dato.marca}"></h:outputText>
+      </h:column>
+      
+   </h:dataTable>
+
+               </h:panelGrid>  
+                
+           </p:rowExpansion> 
+            </p:dataTable>
+            
+            
+            
+            
+            
+            <p:dialog header="Detalle de los marcas" widgetVar="marcaDialog" resizable="false" id="carDlg" modal="true">
+                <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                    <f:facet name="header">
+                        <h:outputText value="Datos de la fila seleccionada"/>
+                    </f:facet>                  
+                   
+                    
+                    <h:outputText value="Codigo: "/>
+                    <h:outputText value="#{marcaManagedBean.marcaSelected.idmarca}" style="font-weight:bold"/>
+                                   
+                    
+                    <h:outputText value="Marca: "/>
+                    <h:outputText value="#{marcaManagedBean.marcaSelected.marca}" style="font-weight:bold"/>
+                    
+                    
+                    
+                </h:panelGrid>
+                
+            </p:dialog>
+            
+            
+            
+            
+              
+          
+           
+           
+     
+</h:form>  
+                
+                
+   </center>           
+</ui:define>
+
+</ui:composition>
+    <!--/h:body-->
+</html>           
+<!--</html>-->
+
+

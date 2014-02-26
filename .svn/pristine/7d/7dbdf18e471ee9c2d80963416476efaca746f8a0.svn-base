@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-sep-2013 14:08:23 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="modelsMaestros.Estados" schema="MAESTROS" table="ESTADOS">
+    <id name="idestado" type="big_decimal">
+      <column name="IDESTADO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+     <version name="v" column="v" unsaved-value="undefined" type="int"/> 
+    <property name="tipo" type="string">
+      <column length="1" name="TIPO"/>
+    </property>
+    <property name="codigo" type="string">
+      <column length="20" name="CODIGO"/>
+    </property>
+    <property name="descripcion" type="string">
+      <column length="150" name="DESCRIPCION"/>
+    </property>
+    <property name="baja" type="string">
+      <column length="1" name="BAJA"/>
+    </property>
+    <!--<set inverse="true" name="infInformes">
+      <key>
+        <column name="IDESTADO" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="modelsMaestros.InfInforme"/>
+    </set>-->
+
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 20-may-2013 12:56:32 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="models.InfAvances" table="INF_AVANCES" schema="GESTIONPERICIAL">
+        <id name="idinfavance" type="big_decimal">
+            <column name="IDINFAVANCE" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="infInforme" class="models.InfInforme" fetch="select">
+            <column name="IDINFORME" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="texto" type="string">
+            <column name="TEXTO" length="200" not-null="true" />
+        </property>
+        <property name="fechaavance" type="string">
+            <column name="FECHAAVANCE" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

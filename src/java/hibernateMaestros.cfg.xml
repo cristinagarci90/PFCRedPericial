@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
+    <!--<property name="hibernate.connection.url">jdbc:oracle:thin:@10.1.0.206:1521:ORCL</property>-->
+     <!--property name="hibernate.connection.url">jdbc:oracle:thin:@10.1.0.206:1522:ORCL</property-->
+    <property name="hibernate.connection.username">maestros</property>
+    <property name="hibernate.connection.password">maestros</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+    <mapping resource="modelsMaestros/Perito.hbm.xml"/>
+    <mapping resource="modelsMaestros/Series.hbm.xml"/>
+    <mapping resource="modelsMaestros/Contador.hbm.xml"/>
+    <mapping resource="modelsMaestros/Estados.hbm.xml"/>
+    <mapping resource="modelsMaestros/Cliente.hbm.xml"/>
+    <mapping resource="modelsMaestros/Ejercicio.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

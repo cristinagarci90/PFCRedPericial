@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-nov-2013 12:41:04 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="models.InfDocinfinspeccionriesgo" table="INF_DOCINFINSPECCIONRIESGO" schema="GESTIONPERICIAL">
+        <id name="idinforme" type="big_decimal">
+            <column name="IDINFORME" precision="22" scale="0" />
+            <generator class="foreign">
+                <param name="property">infInforme</param>
+            </generator>
+        </id>
+        <one-to-one name="infInforme" class="models.InfInforme" constrained="true"></one-to-one>
+        <property name="fecha" type="date">
+            <column name="FECHA" length="7" />
+        </property>
+        <property name="estadogeneral" type="string">
+            <column name="ESTADOGENERAL" length="2" />
+        </property>
+        <property name="pintura" type="string">
+            <column name="PINTURA" length="2" />
+        </property>
+        <property name="guarnecidos" type="string">
+            <column name="GUARNECIDOS" length="2" />
+        </property>
+        <property name="oxidaciones" type="string">
+            <column name="OXIDACIONES" length="2" />
+        </property>
+        <property name="abolladuras" type="string">
+            <column name="ABOLLADURAS" length="2" />
+        </property>
+        <property name="corrosiones" type="string">
+            <column name="CORROSIONES" length="2" />
+        </property>
+        <property name="instalacionelectrica" type="string">
+            <column name="INSTALACIONELECTRICA" length="2" />
+        </property>
+        <property name="neumaticosdelanteros" type="string">
+            <column name="NEUMATICOSDELANTEROS" length="2" />
+        </property>
+        <property name="neumaticostraseros" type="string">
+            <column name="NEUMATICOSTRASEROS" length="2" />
+        </property>
+        <property name="descripciondanyos" type="string">
+            <column name="DESCRIPCIONDANYOS" length="2000" />
+        </property>
+        <property name="descripcionaccesorios" type="string">
+            <column name="DESCRIPCIONACCESORIOS" length="2000" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="OBSERVACIONES" length="2000" />
+        </property>
+        <property name="resumen" type="string">
+            <column name="RESUMEN" length="2" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.InfInforme" schema="GESTIONPERICIAL" table="INF_INFORME">
+    <id name="idinforme" type="big_decimal">
+      <column name="IDINFORME" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <version name="v" column="v" unsaved-value="undefined" type="int"/> 
+    <many-to-one class="models.Cobertura" fetch="select" name="cobertura" lazy="false">
+      <column name="COBERTURA" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <many-to-one class="models.Tipoinforme" fetch="select" name="tipoinforme" lazy="false">
+      <column name="TIPOINFORME" not-null="true" precision="22" scale="0"/>
+    </many-to-one>
+    <!--many-to-one class="modelsMaestros.Perito" fetch="select" name="perito">
+      <column name="PERITO" not-null="true" precision="22" scale="0"/>
+    </many-to-one-->
+     <property name="perito" type="big_decimal">
+      <column name="PERITO"  precision="22" scale="0"/>
+    </property>
+    <property name="numeroinforme" type="string">
+      <column length="50" name="NUMEROINFORME" not-null="true"/>
+    </property>
+    <property name="clientesolicitante" type="big_decimal">
+      <column name="CLIENTESOLICITANTE" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="clientepagador" type="big_decimal">
+      <column name="CLIENTEPAGADOR"  precision="22" scale="0"/>
+    </property>
+    <property name="clientecabecerainf" type="big_decimal">
+      <column name="CLIENTECABECERAINF" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="clientecabecerafac" type="big_decimal">
+      <column name="CLIENTECABECERAFAC"  precision="22" scale="0"/>
+    </property>
+    <property name="poliza" type="string">
+      <column length="50" name="POLIZA"/>
+    </property>
+    <property name="siniestro" type="string">
+      <column length="50" name="SINIESTRO"/>
+    </property>
+    <property name="convenio" type="string">
+      <column length="2" name="CONVENIO" not-null="true">
+        <comment>S O N</comment>
+      </column>
+    </property>
+    
+    <property name="fechaperitacion" type="date">
+      <column length="7" name="FECHAPERITACION"/>
+    </property>
+    <!--<property name="fechaperitacion" type="string">
+      <column length="20" name="FECHAPERITACION"/>
+    </property>-->
+    <property name="peritara" type="string">
+      <column length="2" name="PERITARA" not-null="true">
+        <comment>ASEGURADO O CONTRARIO A O C</comment>
+      </column>
+    </property>
+    <property name="nombreconductor" type="string">
+      <column length="200" name="NOMBRECONDUCTOR"/>
+    </property>
+    <property name="solicitante" type="string">
+      <column length="200" name="SOLICITANTE"/>
+    </property>
+    <property name="franquicia" type="big_decimal">
+      <column name="FRANQUICIA" precision="22" scale="0"/>
+    </property>
+    <property name="compromiso" type="string">
+      <column length="2" name="COMPROMISO" not-null="true">
+        <comment>S O N</comment>
+      </column>
+    </property>
+    <property name="comentariofranquicia" type="string">
+      <column length="200" name="COMENTARIOFRANQUICIA"/>
+    </property>
+    
+    <property name="siniestrofecha" type="date">
+      <column length="7" name="SINIESTROFECHA"/>
+    </property>
+    <property name="siniestropoblacion" type="string">
+      <column length="4" name="SINIESTROPOBLACION" not-null="true"/>
+    </property>
+    <property name="siniestroprovincia" type="string">
+      <column length="2" name="SINIESTROPROVINCIA" not-null="true"/>
+    </property>
+    <property name="siniestrohora" type="string">
+      <column length="20" name="SINIESTROHORA"/>
+    </property>
+    <property name="danyosasegurado" type="string">
+      <column length="200" name="DANYOSASEGURADO"/>
+    </property>
+    <property name="danyoscontrario" type="string">
+      <column length="200" name="DANYOSCONTRARIO"/>
+    </property>
+    <property name="danyosaccesorios" type="string">
+      <column length="200" name="DANYOSACCESORIOS"/>
+    </property>
+    <property name="siniestoversion" type="string">
+      <column length="200" name="SINIESTOVERSION"/>
+    </property>
+    <property name="siniestrocomentarios" type="string">
+      <column length="200" name="SINIESTROCOMENTARIOS"/>
+    </property>
+    <property name="intervinopolicia" type="string">
+      <column length="2" name="INTERVINOPOLICIA" not-null="true">
+        <comment>S N o D - SI NO O DESCONOCIDO</comment>
+      </column>
+    </property>
+    <property name="culpabilidad" type="string">
+      <column length="20" name="CULPABILIDAD" not-null="true">
+        <comment>S N o D - SI NO O DESCONOCIDO</comment>
+      </column>
+    </property>
+    <property name="asegurado" type="big_decimal">
+      <column name="ASEGURADO" precision="22" scale="0"/>
+    </property>
+    <!--property name="contrario1" type="big_decimal">
+      <column name="CONTRARIO1" precision="22" scale="0"/>
+    </property>
+    <property name="contrario2" type="big_decimal">
+      <column name="CONTRARIO2" precision="22" scale="0"/>
+    </property>
+    <property name="contrario3" type="big_decimal">
+      <column name="CONTRARIO3" precision="22" scale="0"/>
+    </property>
+    <property name="contrario4" type="big_decimal">
+      <column name="CONTRARIO4" precision="22" scale="0"/>
+    </property-->
+    <property name="taller" type="big_decimal">
+      <column name="TALLER" precision="22" scale="0"/>
+    </property>
+    <property name="siniestrovia" type="string">
+      <column length="150" name="SINIESTROVIA"/>
+    </property>
+    <!--set inverse="true" name="infInformeasegurado">
+      <key>
+        <column name="INFORME" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.InfInformeasegurado"/>
+    </set-->
+      <!--set name="infAvances" inverse="true">
+            <key>
+                <column name="IDINFORME" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="models.InfAvances" />
+        </set-->
+         <one-to-one name="infDocinformevarios" class="models.InfDocinformevarios"></one-to-one>
+       
+  </class>
+</hibernate-mapping>

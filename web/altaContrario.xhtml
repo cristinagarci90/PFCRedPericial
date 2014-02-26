@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <!--h:form id="altaAsegPanel"-->
+        <ui:composition>
+            <h:form id="cont" >
+          
+            
+            
+       <p:panel id="panelCont"><!-- header="Provincia"--> 
+          <table border="0">
+        
+              <tr>
+                    <td colspan="4">
+                        <table>
+                            <tr>
+                                 <td align="right">#{msg['name']}:</td>
+                                  <td>
+                                      <h:inputText label="#{msg['name']}" required="true" requiredMessage="#{msg['Required_field']} - #{msg['name']}" id="nombreCont" value="#{contrarioManagedBean.actual.nombre}">
+                                          <p:ajax update="msgNombreCont" event="keyup" />  
+                                      </h:inputText>
+                                      <!--h:message for="personaContacto" /-->
+                                  </td>
+                                   <td align="right">#{msg['registration_number']}:</td>
+                                   <td>
+                                      <h:inputText label="#{msg['registration_number']}"  required="true" requiredMessage="#{msg['Required_field']} - #{msg['registration_number']}" id="matriculaCont"  value="#{contrarioManagedBean.actual.matricula}">
+                                           <p:ajax update="msgMatriculaCont" event="keyup" />  
+                                      </h:inputText>
+                                  </td>
+
+
+
+
+
+                                   </tr>
+                                  </table>
+                              </td>
+                           
+                        </tr>
+                       
+                          <tr><td colspan="4"><br/>
+                                      <h:outputLabel value="#{contrarioManagedBean.actual.idcontrario}"/>
+                                    </td></tr>                        
+                          <!--Marca y Modelo -->
+                          
+                          <tr><td colspan="4"><br/></td></tr>
+                       
+                            <tr>
+                            <td align="right">#{msg['trademark']}:</td>
+                            <td>
+                                
+                                <h:selectOneMenu  id="marcasCont" value="#{contrarioManagedBean.marcaClase.idmarca}" required="true" requiredMessage="#{msg['Required_field']} - #{msg['trademark']}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="#{msg['Select_a']} #{msg['trademark']}" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{marcaManagedBean.provvalor}"/> 
+                                       <f:ajax execute="@this" render="modeloCont"/> 
+                                       <p:ajax update="msgMarcaCont" event="valueChange"/>  
+                               </h:selectOneMenu>
+                               
+                            </td>
+                           <td align="right">Modelo:</td>
+                           <td> 
+                               <h:selectOneMenu  id="modeloCont" required="true" value="#{contrarioManagedBean.modeloClase.idmodelo}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="Seleccione un modelo" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{modelosManagedBean.getModelos(contrarioManagedBean.marcaClase.idmarca)}"/> 
+                                      
+                               </h:selectOneMenu>
+                                       
+                          
+
+                            </td>
+                               
+                        </tr>   
+                           <tr><td colspan="4"><br/></td></tr>
+                           <tr>
+                            <td align="right">#{msg['Select_a_province']}:</td>
+                            <td>
+                              <h:selectOneMenu  id="contrarioprovincia" value="#{contrarioManagedBean.actual.provincia}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="#{msg['Select_a_province']}" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                       <f:ajax execute="@this" render="contrariopoblacion"/> 
+                               </h:selectOneMenu>
+                            </td>
+                           <td align="right">Siniestro Población:</td>
+                           <td> 
+                              <h:selectOneMenu  id="contrariopoblacion" value="#{contrarioManagedBean.actual.poblacion}" style="width:175px">   
+                                       <f:selectItem 
+                                                itemLabel="#{msg['Select_a_province']}" 
+                                                itemValue="" /> 
+                                       <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(contrarioManagedBean.actual.provincia)}"/> 
+                                     
+                               </h:selectOneMenu>
+                                       
+                          
+
+                            </td>
+                               
+                        </tr>   
+                         
+                          <tr>
+                              <td colspan="5">
+                                   <p:message for="nombreCont" id="msgNombreCont" />
+                                   <p:message for="matriculaCont" id="msgMatriculaCont" />
+                                    <p:message for="marcasCont" id="msgMarcaCont" />
+                                     <p:message for="modeloCont" id="msgModeloCont" />
+                              </td>
+                          </tr>
+                          <tr>
+                              <td colspan="5" align="center" >
+                                  <p:commandButton type="reset" value="Borrar"/>
+    <p:commandButton actionListener="#{contrarioManagedBean.newRegister()}" update=":tabContrarios" value="Guardar Nuevo" />
+    <p:commandButton action="#{contrarioManagedBean.updateRegister()}" value="Modificar" rendered="#{not empty contrarioManagedBean.actual.idcontrario}" />
+
+                              </td>
+                              
+                          </tr>
+                       
+                    </table>
+                   
+                   
+                
+                    
+              
+
+    </p:panel>  
+                </h:form>
+             </ui:composition>
+         <!--/h:form-->
+    </h:body>
+</html>

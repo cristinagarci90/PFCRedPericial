@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+         
+
+    <ui:composition template="/WEB-INF/facelets/templates/#{Login.usuarioRol}.xhtml">
+	<ui:define name="title">
+		Gestión Pericial - Modificar Perito
+	</ui:define>
+        <ui:define name="content">
+            
+            <center>
+    
+    <h:form>  
+      <p:accordionPanel id="nuevoperito" multiple="true" style="width: 800px"  dynamic="false">
+               
+            <p:tab title="Informacion Basica">  
+                                
+                                <table>
+                                    <tr>
+                                        <td align="left">    
+                                             <h:outputLabel value="Nombre :" /> 
+                                        </td>
+                                    <td align="left"> 
+                                        <p:inputText id="perito" value="#{peritoManagedBean.actual.perito}" required="true"
+                                                 requiredMessage="Nombre requerido">                                      
+                                       
+                                        </p:inputText>
+                                        <p:watermark for="perito" value="Nombre Perito *" />
+                                    <p:message for="perito"/>
+                                    </td>
+                                        
+                                     <td align="left">
+                                            <h:outputLabel value="NIF :" />
+                                        </td>
+                                    <td align="left">
+                                        <p:inputText id="nif" value="#{peritoManagedBean.actual.nif}" required="true"
+                                                 requiredMessage="Nif requerido"
+                                                 validatorMessage="maximo 20 caracteres" >
+                                        <f:validateLength maximum="20" />
+                                    </p:inputText>
+                                     <p:watermark for="nif" value="Nif Perito *" />
+                                     <p:message for="nif"/>
+                                    </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td align="left">
+                                            <h:outputLabel value="Telefono1 : " />
+                                        </td>
+                                        <td align="left">
+                                    <p:inputText id="telefono1" value="#{peritoManagedBean.actual.telefono1}" />
+                                    <p:watermark for="telefono1" value="Telefono1 Perito " />
+                                    <p:message for="telefono1" /> 
+                                        </td>
+                                    <td align="left">  
+                                        <h:outputLabel value="Telefono2 :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="telefono2" value="#{peritoManagedBean.actual.telefono2}" />
+                                     <p:message for="telefono2" />
+                                    <p:watermark for="telefono2" value="Telefono2 Perito" />
+                                    </td>
+                                    </tr>
+                                    
+                                                                    
+                                    
+                                    <tr>
+                                    <td align="left">  
+                                        <h:outputLabel value="Comentario :" />
+                                    </td>
+                                    <td align="left">
+                                    <p:inputText id="comentario" value="#{peritoManagedBean.actual.comentario}" />
+                                    <p:watermark for="comentario" value="Comentario Perito" />
+                                   
+                                    </td>
+                                        
+                                    <td align="left">  
+                                        <h:outputLabel value="Email :" />
+                                    </td>
+                                    <td align="left">
+                                        <p:inputText id="email"  validatorMessage="Formato de email no válido" value="#{peritoManagedBean.actual.email}">
+                                        <f:validateRegex
+                        		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
+                                    <p:watermark for="email" value="Direccion Email " />
+                                    <p:message for="email" />
+
+                                    </td>
+                                    </tr>                                
+                                    
+                                    
+                                    
+                                    <tr>
+                                        <td align="left">  
+                                        <h:outputLabel value="Codigo Postal :" />
+                                    </td>
+                                        <td align="left" colspan="3">
+                                            <p:inputText id="cp" value="#{peritoManagedBean.actual.codigoPostal}" />
+                                    <p:watermark for="cp" value="Codigo Postal Perito" />
+                                     <p:message for="cp" />
+                                    
+                                    </td>
+                                        
+                                     
+                                    </tr>                           
+                                   
+                                    
+                                    
+                                     
+                                       
+                                                                                                        
+                                    <tr>
+                                       <td align="left">
+                                           <h:outputLabel value="Provincia/Población :" />
+                                        </td> 
+                                        <td>   
+                                            <p:selectOneMenu id="provincia" value="#{peritoManagedBean.actual.idprovincia}" style="width:175px" 
+                                                             required="true" requiredMessage="Provincia obligatoria"> 
+                                                <f:selectItem 
+                                                            itemLabel="Seleccione una provincia" 
+                                                itemValue="" /> 
+                                        <f:selectItems value="#{provinciasManagedBean.provvalor}"/> 
+                                        <f:ajax 
+                                        execute="@this" 
+                                        render="poblacion"/>                                         
+                                         </p:selectOneMenu>  
+                                         <p:message for="provincia" />
+                                        </td>  
+                                        <td>   
+                                            <p:selectOneMenu  value="#{peritoManagedBean.actual.idpoblacion}" id="poblacion" style="width:175px"
+                                                              required="true" requiredMessage="Poblacion Obligatoria"> 
+                                         <f:selectItem itemLabel="Seleccione una Población" 
+                                        itemValue=""/> 
+                                        <f:selectItems value="#{poblacionesManagedBean.getPoblaciones(peritoManagedBean.actual.idprovincia)}"/> 
+                                        </p:selectOneMenu>
+                                        </td>
+                                    </tr>
+                                        
+                                  
+                                                                
+                                </table>
+                        </p:tab>
+                
+         
+         <p:tab title="Detalle" >
+         
+             <table>
+                 <tr>
+             <td align="left">  
+             <h:outputLabel value="Iva :" />
+             </td>
+            <td align="left">  
+            <p:inputText id="iva" value="#{peritoManagedBean.actual.iva}" />
+             <p:message for="iva"/>
+            </td>
+           
+             <td align="left">  
+             <h:outputLabel value="Irpf :" />
+             </td>
+             <td align="left">  
+             <p:inputText id="irpf" value="#{peritoManagedBean.actual.irpf}" />
+             <p:message for="irpf"/>
+             </td>
+                 </tr> 
+              <tr>    
+             <td align="left">  
+             <h:outputText value="Fecha de alta :" /> 
+             </td>
+             <td align="left">  
+             <h:outputText value="#{peritoManagedBean.actual.fechaAlta}" id="popupButtonDate">              
+             <f:convertDateTime pattern="dd/mm/yyyy"/>  
+             </h:outputText>            
+                 
+             <p:calendar value="#{peritoManagedBean.actual.fechaAlta}" id="popupButtonCal" showOn="button" />
+             </td>
+              
+             <td align="left">  
+             <h:outputLabel value="Resultante :" />
+             </td>
+             <td align="left">  
+                 <p:inputText id="resultante" value="#{peritoManagedBean.actual.resultante}" />
+             <p:message for="resultante"/>
+             </td>
+                 </tr> 
+                 
+                 
+                    <tr>
+             <td align="left">  
+             <h:outputLabel value="Fijo :" />
+             </td>
+             <td align="left">  
+                 <p:inputText id="fijo" value="#{peritoManagedBean.actual.fijo}" />
+             <p:message for="fijo"/>
+             </td>
+                
+             <td align="left">  
+             <h:outputLabel value="Precio Km :" />
+             </td>
+             <td align="left">  
+                 <p:inputText id="preciokm" value="#{peritoManagedBean.actual.precioKm}" />
+             <p:message for="preciokm"/>
+             </td>
+                 </tr>  
+                 
+                 
+             <tr>
+      <td align="left">Coche Propio :</td>
+      <td align="left">
+          <h:selectOneRadio id="coche-propio" value="#{peritoManagedBean.actual.cochePropio}">
+          <f:selectItem itemValue="S" itemLabel="Si"/>
+          <f:selectItem itemValue="N" itemLabel="No"/>     
+         </h:selectOneRadio>       
+        </td>
+         
+      <td align="left">Fotos :</td>
+      <td align="left">
+          <h:selectOneRadio id="fotos" value="#{peritoManagedBean.actual.fotos}">
+          <f:selectItem itemValue="S" itemLabel="Si"/>
+          <f:selectItem itemValue="N" itemLabel="No"/>     
+         </h:selectOneRadio>       
+        </td>
+          </tr>
+                        
+                 
+                 
+             </table>
+     
+         </p:tab>
+                            
+          
+         
+         
+         
+         
+        </p:accordionPanel>  
+            
+       
+            
+          
+         
+         
+       
+       
+         
+         
+          
+        
+         
+             
+                 
+                 
+            
+        
+       
+        
+        
+        
+        
+      <center>
+                  <h:outputLabel value="Baja: " for="baja"/> 
+   <p:watermark for="baja" value="Baja S/N">
+   <p:selectOneMenu value="#{peritoManagedBean.actual.baja}" required="true" id="baja" >
+                      
+            <f:selectItem itemLabel="N" itemValue="N" />              
+            <f:selectItem itemLabel="S" itemValue="S" />  
+            
+   </p:selectOneMenu> 
+   </p:watermark>
+         <p:messages id="messages" />
+                    
+                 <br></br>
+                  
+              
+           
+                 <h:commandButton action="#{peritoManagedBean.updateRegister}" value="Guardar"/>
+                
+                  
+                </center>
+        
+       
+            
+               
+                
+                
+                
+               
+    
+
+        
+        
+        
+        
+        
+</h:form>  
+                
+                
+   </center>           
+</ui:define>
+
+</ui:composition>
+    
+</html>           
+

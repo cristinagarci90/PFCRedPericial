@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.ZonasPerito" schema="GESTIONPERICIAL" table="ZONAS_PERITO">
+    <composite-id class="models.ZonasPeritoId" name="id">
+      <key-property name="idzona" type="big_decimal">
+        <column name="IDZONA" precision="22" scale="0"/>
+      </key-property>
+      <key-property name="idperito" type="big_decimal">
+        <column name="IDPERITO" precision="22" scale="0"/>
+      </key-property>
+    </composite-id>
+    <!--many-to-one class="models.Perito" fetch="select" insert="false" name="perito" update="false">
+      <column name="IDPERITO" not-null="true" precision="22" scale="0"/>
+    </many-to-one-->
+    <property name="zona" type="string">
+      <column length="200" name="ZONA"/>
+    </property>
+  </class>
+</hibernate-mapping>

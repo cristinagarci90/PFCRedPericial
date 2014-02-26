@@ -1,0 +1,258 @@
+package web;
+//package control;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import modelsMaestros.Cliente;
+import org.hibernate.Session;
+import manager.EstadoManager;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import org.primefaces.component.accordionpanel.AccordionPanel;
+import org.primefaces.event.RowEditEvent;
+import comun.Comun;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import modelsMaestros.Estados;
+
+
+@ManagedBean (name="estadoManagedBean")
+@SessionScoped
+
+public class EstadosManagedBean {
+   // gestion del modelo
+    
+     
+     private List<Object> listado;
+     private List<Estados> listadoes;
+     Collection <Estados> estadosvalor = new ArrayList();
+     private boolean editable;
+     Estados estadoSelected;
+     Boolean tieneMensajes;
+     private AccordionPanel panel;
+     public Comun comun;
+
+
+       
+    public Boolean isTieneMensajes() {
+        return FacesContext.getCurrentInstance().getMessages().hasNext();
+        
+    }
+
+    public String addError() {  
+        String cad=null;
+        if (isTieneMensajes()){
+            cad="ERROR";
+        }
+        return cad;
+    }   
+
+    
+     public void addError2(ActionEvent actionEvent) {   
+         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Sample error message", "PrimeFaces makes no mistakes"));   
+   } 
+      
+    public void setTieneMensajes(Boolean tieneMensajes) {
+        this.tieneMensajes = tieneMensajes;
+    }
+
+    
+    
+   
+   
+//Modificar en cada reutilización
+
+private EstadoManager ClaseManager = new EstadoManager(); // acceso a los datos de register
+  
+public Estados actual = new Estados();
+
+public Estados actualNuevo = new Estados();
+
+    public Estados getActual() {
+        return actual;
+    }
+
+    
+    public Estados getActualNuevo() {
+        return actualNuevo;
+    }
+Session session = null;
+     
+
+  //    INICIO  ------   Modificar en cada reutilización
+   public EstadosManagedBean() {
+        if(this.listado == null){
+            refreshListRegister();
+        }
+        actual=new Estados();
+      // InicializarClase();
+     
+    }
+  
+      public void InicializarClase(){
+         actual=new Estados();
+      }
+  
+        public String Modificar(Estados es) {
+        actual = es;
+        return ClaseManager.getXhtmlGestion();
+    }
+        
+     
+      public String newRegister(){
+            
+       actual=actualNuevo;
+       
+       
+       actual= ClaseManager.ClaseConUltimoID(actual) ;
+       boolean resultado=true;      
+       
+      
+       
+       resultado=ClaseManager.create(actual);        
+       
+       
+       return "MEstados.xhtml"; 
+}  
+        /* private static Map <String,Object> provvalor;
+    static {
+            provvalor=new LinkedHashMap<String,Object>();
+            List <Estados> provincias = new ClienteManager().getList();
+            System.out.println("Entro en provvalor");
+                System.out.println("Entro en provvalor tamaño de la lista=" + provincias.size());
+          
+            for (int i=0; i < provincias.size(); i++){
+                 System.out.println("Entro en provvalor for");
+              
+          
+               Cliente prov = new Cliente();
+               prov=(Cliente) provincias.get(i);
+               provvalor.put(prov.getNombre(),prov.getIdcliente());
+                      //.getProvincia(),prov.getIdprovincia());
+     }
+    }
+   public Map <String,Object> getprovvalor(){
+       return provvalor;
+   } 
+  */ 
+   
+    public String Nuevo() {
+              
+      actualNuevo=new Estados();
+      
+          
+      return "AEstados.xhtml";
+    }
+   
+  
+   /*  public List<Object> getProvs() {
+        return listado;
+    }
+   
+
+    public void setProvs(List<Object> prov) {
+        this.listado = prov;
+    }
+    */
+    
+    public List<Estados> getlistadoes() {
+        this.listadoes=ClaseManager.getList();
+        return listadoes;
+    }
+   
+     public String updateRegister(){
+       try{
+         
+         boolean resultado=ClaseManager.update(actual);
+        }
+       
+        catch(Exception e)
+        {
+            System.out.println("Error en modificar estado="+ e);
+        }
+         return "MEstados.xhtml";       
+       
+    }
+    
+     private static Map <String,Object> estadovalor;
+    static {
+            estadovalor=new LinkedHashMap<String,Object>();
+            List <Estados> estados = new EstadoManager().getList();
+                     
+            for (int i=0; i < estados.size(); i++){
+               Estados prov = new Estados();
+               prov=(Estados) estados.get(i);
+               estadovalor.put(prov.getDescripcion(),prov.getIdestado());     
+     }
+    }
+   public Map <String,Object> getestadovalor(){
+       return estadovalor;
+   } 
+     
+   /*  public List <Estados> getestadosvalor()
+     {
+        this.estadosvalor=ClaseManager.getList();
+        
+        return estadosvalor; 
+             
+    }  
+     */
+     
+     public Collection getestadosvalor() {
+        
+        Iterator itr = listadoes.iterator();
+        while(itr.hasNext()) {
+        Estados es = (Estados)itr.next();
+        estadosvalor.add(es);
+   }
+   return estadosvalor;
+}
+
+    private void refreshListRegister(){
+        this.listado = ClaseManager.getList();
+      
+    }
+
+    
+     public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
+    
+    
+     public void onEdit(RowEditEvent  event) { 
+        Estados es = (Estados) event.getObject();
+        
+        FacesMessage msg = new FacesMessage("Estado Editado", ((Estados) event.getObject()).getDescripcion());  
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        
+        
+     }  
+
+     public void onCancel(RowEditEvent event) {  
+        FacesMessage msg = new FacesMessage("Estados Cancelado", ((Estados) event.getObject()).getDescripcion());  
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+     }  
+
+    
+     public Estados getEstadoSelected() {
+        return estadoSelected;
+    }
+
+    public void setEstadoSelected(Estados estadoSelected) {
+        this.estadoSelected = estadoSelected;
+    }
+    
+    
+   
+}
+
+

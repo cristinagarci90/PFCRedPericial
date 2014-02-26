@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <!--h:form id="altaAsegPanel"-->
+        <ui:composition>
+            <h:form id="informeVarios" >
+                          <p:outputPanel id="lazypanel2" layout="block">
+                            <p:panel id="DatosInforme">
+
+                                    <table border="0">
+                                      
+                                            <tr>
+                                                          <td align="right">Id:</td>
+                                                          <td>
+                                                             id clase principal--- <h:outputLabel value="#{informeManagedBean.actual.idinforme}"/>
+                                                             id clase vinculada a la principal-- <h:outputLabel value="#{informeManagedBean.actual.infDocinformevarios.idinforme}"/>
+                                                           </td>
+
+                                            </tr>
+                                            
+                                            <tr>
+                                                       <td align="right">
+                                                           
+                                                          <h:outputLabel value="Asegurado" rendered="#{informeManagedBean.actual.peritara==1}"/>  
+                                                         <h:outputLabel value="Contrario" rendered="#{informeManagedBean.actual.peritara==2}"/>  
+                                                         
+                                                       </td>
+                                                       
+                                             </tr>
+                                          
+                                        <tr>
+                                            <td colspan="2">
+                                                  <table>
+                                                        <tr>
+                                                             <td align="right">Texto del informe :</td>
+                                                              <td>
+                                                                  <h:inputText id="texto" value="#{informeManagedBean.actual.infDocinformevarios.texto}"/>
+                                                              </td>
+                                                        </tr>
+                                                      <tr>
+                                                               <td align="right">Observaciones :</td>
+                                                               <td>
+                                                                  <h:inputText  id="observaciones"  value="#{informeManagedBean.actual.infDocinformevarios.observaciones}"/>
+                                                               </td>
+                                                        </tr>
+                                                       <tr>
+                                                               <td align="right">Fecha :</td>
+                                                               <td>
+                                                                     <h:outputText value="#{informeManagedBean.actual.infDocinformevarios.fecha}" id="popupButtonDate">              
+                                                                    <f:convertDateTime pattern="dd/mm/yyyy"/>  
+                                                                    </h:outputText>      
+                                                                     <p:calendar value="#{informeManagedBean.actual.infDocinformevarios.fecha}" id="popupButtonCal" showOn="button" />
+                                                                  
+                                                               </td>
+                                                        </tr>
+                                                   </table>
+                                            </td>
+                                        </tr>
+                                         <!--tr>
+                                            <td colspan="2">
+                                                  <table>
+                                                        <tr>
+                                                             <td align="right">Texto diretamente:</td>
+                                                              <td>
+                                                                  <h:inputText id="textod" value="#{informevariosManagedBean.actual.texto}"/>
+                                                              </td>
+                                                        </tr>
+                                                      <tr>
+                                                               <td align="right">Observaciones :</td>
+                                                               <td>
+                                                                  <h:inputText  id="observacionesd"  value="#{informevariosManagedBean.actual.observaciones}"/>
+                                                               </td>
+                                                        </tr>
+                                                   </table>
+                                            </td>
+                                        </tr-->
+                                        <!--las dos primeras para mostrar y las dos segundas para guardar-->
+                                        <tr>
+                                            <td>
+                                                <p:commandButton rendered="#{empty informeManagedBean.actual.infDocinformevarios.idinforme}" value="Guardar Nuevo" update=":tabViewDocumentos" oncomplete="dlgIV.hide()">
+                                                    <f:ajax event="click" onevent="dlgIV.hide()" listener="#{informevariosManagedBean.newRegister()}"  />
+                                                </p:commandButton>
+                                                 <p:commandButton value="Cerrar" oncomplete="dlgIV.hide()"/>
+                                                    
+                                                 <p:commandButton action="#{informevariosManagedBean.newRegister()}" rendered="#{not empty informeManagedBean.actual.infDocinformevarios.idinforme}" value="Modificar" />
+                                           <!--h:commandButton value="Save Assertions"  >
+  <f:ajax event="click" onevent="dlg2.hide()" listener="#{datatypeAssertionController.saveDatatypeAssertion}" />
+ </h:commandButton-->
+<!--action="#{informevariosManagedBean.newRegister()}"  -->
+<!--h:commandLink value="Close" >
+      <f:ajax event="click" onevent="dlg2.hide()"  listener="#{datatypeAssertionController.closeDatatypeAssertion}" />
+</h:commandLink--> 
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                 
+                              </p:panel>
+                          </p:outputPanel>
+                </h:form>
+             </ui:composition>
+         <!--/h:form-->
+    </h:body>
+</html>
+
+
+
+
+
+
+

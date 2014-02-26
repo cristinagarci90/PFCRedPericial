@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-sep-2013 14:08:23 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="modelsMaestros.Ejercicio" schema="MAESTROS" table="EJERCICIO">
+    <id name="idejercicio" type="big_decimal">
+      <column name="IDEJERCICIO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="ejercicio" type="big_decimal">
+      <column name="EJERCICIO" precision="22" scale="0">
+        <comment>IDENTIFICA EL NUMERO DEL EJERCICIO POR EJEMPLO 2013</comment>
+      </column>
+    </property>
+    <property name="activo" type="string">
+      <column length="1" name="ACTIVO">
+        <comment>VALOR POR DEFECTO SI LA SERIE ESTÁ ACTIVA</comment>
+      </column>
+    </property>
+    <set inverse="true" name="contadors">
+      <key>
+        <column name="IDEJERCICIO" not-null="true" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="modelsMaestros.Contador"/>
+    </set>
+  </class>
+</hibernate-mapping>

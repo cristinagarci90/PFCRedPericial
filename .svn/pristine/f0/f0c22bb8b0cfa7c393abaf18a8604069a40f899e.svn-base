@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <!--h:form id="formAvances"-->
+        <ui:composition>
+            <p:panel id="panelAvance">
+                <table>
+                    <tr>
+                        <td>
+                            <p:dataList value="#{avanceManagedBean.listado}" var="avances" itemType="disc" id="listadoAvances"  >  
+                                #{avances.fechaavance} -   #{avances.texto}  &nbsp;&nbsp;&nbsp;
+                            </p:dataList>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                              <table border="0">
+                              
+                                  <tr>
+                                      <td>
+                                          
+                                          <h:selectOneMenu  id="textosAvance"  style="width:175px" value="#{textoAvanceManagedBean.actual.texto}">   
+                                                <f:selectItem 
+                                                         itemLabel="Seleccione un Texto" 
+                                                         itemValue="" /> 
+                                                <f:selectItems value="#{textoAvanceManagedBean.getTextos(informeManagedBean.actual.clientesolicitante)}"/> 
+                                             </h:selectOneMenu>
+                                      </td>
+                                      <td>
+                                              <!--b><p onclick="document.getElementById('avance:texto').value=document.getElementById('avance:textosAvance').options[document.getElementById('avance:textosAvance').selectedIndex].text;">Asignar Texto</p></b-->
+                                                <b><p onclick="document.getElementById('avance:textoCia').value=document.getElementById('avance:textosAvance').options[document.getElementById('avance:textosAvance').selectedIndex].text;">Asignar Texto</p></b>
+
+                                      </td>
+                                  </tr>
+                                    <tr><td colspan='2'>    
+                                         
+                                            <h:inputText id="textoCia"  value="#{avanceManagedBean.actual.textoCia}" onkeypress="return false;" onclick="return false;" onfocus="return false;" onkeydown="return false;" ></h:inputText>
+                                        
+                                      </td></tr>
+                                    <tr>
+                                      <td colspan="5">
+                                      <br/>
+                                       Texto:
+                                                               <h:inputText required="true" requiredMessage="#{msg['Required_field']} - Texto del avance" id="texto"  value="#{avanceManagedBean.actual.texto}"><!--id="texto" value="#{textoAvanceManagedBean.actual.texto}"-->
+                                                                   <p:ajax update="msgTextoAvance" event="keyup" />  
+                                                               </h:inputText>
+                                       <br/>
+                                            <!--h:outputText value="#{textoAvanceManagedBean.actual.texto}" id="texto" /-->
+
+                                                               <!--h:message for="personaContacto" /-->
+
+                                                </td>
+
+                                          </tr>
+                                  
+                                              <tr>
+                                                <td colspan="5" align="center" >
+                                                    <p:message for="texto" id="msgTextoAvance" />
+                                                    <p:commandButton type="reset" value="Borrar"/>
+                                                    <p:commandButton actionListener="#{avanceManagedBean.newRegister()}" value="Guardar Nuevo" update="listadoAvances"/>
+                                                   
+                                                </td>
+
+                                            </tr>
+                              </table>
+                        </td>
+                    </tr>
+                </table>
+                
+               
+                
+        <!--h:panelGrid columns="4" cellpadding="5">
+		<h:outputLabel for="name" value="Name:" style="font-weight:bold"/>
+		
+		<p:inputText id="name" value="#{textoAvanceManagedBean.actual.texto}" />
+		
+		<p:commandButton value="Submit" update="texto"/>
+
+        <h:outputText value="#{textoAvanceManagedBean.actual.texto}" id="display" />
+	</h:panelGrid-->
+                   
+                   
+                 
+                    
+              
+
+    </p:panel>  
+             </ui:composition>
+         <!--/h:form-->
+    </h:body>
+</html>

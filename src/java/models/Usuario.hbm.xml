@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Usuario" schema="GESTIONPERICIAL" table="USUARIO">
+    <id name="codusuario" type="big_decimal">
+      <column name="CODUSUARIO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="models.Roles" fetch="select" name="roles">
+      <column name="ROL" precision="22" scale="0"/>
+    </many-to-one>
+    <property name="nombre" type="string">
+      <column length="150" name="NOMBRE"/>
+    </property>
+    <property name="password" type="string">
+      <column length="50" name="PASSWORD"/>
+    </property>
+    <property name="email" type="string">
+      <column length="50" name="EMAIL"/>
+    </property>
+    <property name="direccion" type="string">
+      <column length="150" name="DIRECCION"/>
+    </property>
+    <property name="telefono" type="string">
+      <column length="10" name="TELEFONO"/>
+    </property>
+    <property name="intentos" type="big_decimal">
+      <column name="INTENTOS" precision="22" scale="0"/>
+    </property>
+    <property name="estado" type="string">
+      <column length="10" name="ESTADO"/>
+    </property>
+    <property name="fhbloqueo" type="string">
+      <column length="20" name="FHBLOQUEO"/>
+    </property>
+    <property name="usuario" type="string">
+      <column length="50" name="USUARIO"/>
+    </property>
+  </class>
+</hibernate-mapping>

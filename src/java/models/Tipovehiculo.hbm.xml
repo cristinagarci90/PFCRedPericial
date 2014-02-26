@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 01-feb-2013 22:03:01 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class name="models.Tipovehiculo" schema="GESTIONPERICIAL" table="TIPOVEHICULO">
+    <id name="idtipovehiculo" type="big_decimal">
+      <column name="IDTIPOVEHICULO" precision="22" scale="0"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="descripcion" type="string">
+      <column length="50" name="DESCRIPCION"/>
+    </property>
+    <set inverse="true" name="infasegurado">
+      <key>
+        <column name="TIPOVEHICULO" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.Infasegurado"/>
+    </set>
+    <set inverse="true" name="infContrario">
+      <key>
+        <column name="TIPOVEHICULO" precision="22" scale="0"/>
+      </key>
+      <one-to-many class="models.InfContrario"/>
+    </set>
+  </class>
+</hibernate-mapping>
